@@ -1,0 +1,120 @@
+/* @import './reset.css'; */
+
+/*  為切板根左清單 */ 
+.hide{display:none;}
+.menu {
+	height: 87.7vh;
+	width: 150px;
+	background-color: #f6e6e4;
+	float: left; 
+	background-image: url("../img/sky.jpg");
+	background-repeat: no-repeat;
+	background-size: 150px 550px;
+}
+
+
+.content {
+	width: 100vw;
+	height: 100vh;
+	padding-top: 70px; 
+	/* background-color: rgb(226, 129, 129); */
+}
+.menu .uiTitle  {
+	font-size: 20px;
+	color: white;
+	/* background-color: #e2bcb7;  */
+}
+.menu ul li {
+	/* color: #ffffff; */
+	transition: 0.25s;
+	list-style: none;
+	color: white;
+}
+
+.menu ul li:hover {
+	background-color: #e29e9e;
+	color: #4a4a4a;
+}
+
+/* 為切板根左清單 */
+
+
+.logo {
+	/* background-color: #926e6f; */
+	width: 200px;
+	position: absolute;/* 不讓位置跑掉 下面為固定位置*/
+	left: 20px;
+	top: -15px;
+}
+.slide{
+	width: 100%; /*以100%*/
+	height: 100vh; /*全螢幕*/
+}
+#slide1{
+	background-image: url('../img/石門.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-repeat:no-repeat;
+	background-size: cover;
+	background-position: center; 
+}
+#slide2{
+	background-image: url('../img/基德.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-repeat:no-repeat;
+	background-size: cover;
+	background-position: center; 
+}
+#slide3{
+	background-image: url('../img/曾文.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-repeat:no-repeat;
+	background-size: cover;
+	background-position: center; 
+}
+
+.nav2{/*因為左右兩邊都是absolute所以遭到擠壓位置改變*/
+	position: absolute; /*設定abs位置*/
+	top: 9px;
+	right:5px;
+}
+.upper{
+	padding-top: 80px; 
+}
+/* rwd to logo */
+@media only screen and (max-width: 900px){
+	.logo {
+		width: 100px;
+		position: absolute;
+		left: auto;
+		top: 5px;
+		right: 20px;
+	}
+	.navbar{
+		background:  white;
+	}
+	.nav2{
+		position: relative;
+		right: auto;
+		top: 0px;
+	}
+	.upper{
+		padding-top: 80px; 
+	}
+	.navbar-fixed { 
+		font-size: 10px;
+	}
+}
+.baccolor1{
+	background-color:  #ca8a8b;
+}
+.baccolor2{
+	background-color:  #e6c4c0;
+}
+.baccolor3{
+	background-color:  #ca8a8b;
+}
+.navbar-fixed { /* just an estimate of your sidebar's width */
+/* height: 500px; */
+height:60px;
+width: 150px;
+font-size: 25px;
+}
+
+
