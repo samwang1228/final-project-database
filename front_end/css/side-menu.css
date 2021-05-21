@@ -1,17 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
-/* *{
-	margin: 0;
-	padding: 0;
-	list-style: none;
-} */
-/* html,body{
-	height: 100%;
-} */
-/* body{
-	background-color: #546377;
-} */
-/*  */
 .hide{display:none;}
 .side-menu{
 	/* position: relative; 定位在side-menu身上 */
@@ -28,7 +16,7 @@
 	transform: translateX(-100%); /* 讓選單移到最右側 */
 	transition: .3s;
 	/* float: left; */
-	position:absolute;
+	position:fixed;
 	　top:80px;
 	　left:80px ;
 	/* position: relative;  */
@@ -125,4 +113,15 @@ a{
 a:hover
 {
 	color: white;
+}
+@media only screen and (max-width: 900px){
+.side-menu{
+	width: 150px;
+}
+.side-menu form input{
+	width: 100px;
+}
+.side-menu form button{
+	width: 10px;
+}
 }
