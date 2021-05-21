@@ -11,6 +11,11 @@
 	width: 100%; /*以100%*/
 	height: 100vh; /*全螢幕*/
 }
+
+.menu-item{
+	overflow-y:auto;
+}
+
 #slide1{
 	background-image: url('../img/石門.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
 	background-repeat:no-repeat;
