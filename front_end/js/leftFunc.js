@@ -1,4 +1,5 @@
-function onSideMenuTitleClick(x){
+function onSideMenuTitleClick(page,x){
+	console.log(page_menu_list);
 	var menu=document.getElementById("menu-"+x);
 	menu.classList.toggle("hide");//切換標籤物件 class 的hide設定 功能同等下面 
 	//也就是有hide時關掉hide沒有則呼叫

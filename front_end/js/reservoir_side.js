@@ -3,6 +3,7 @@ apiReservoirSide();
 /* eslint-env jquery */
 function apiReservoirSide(){
     reservoir = getReservoirSide();
+    page_menu_list[0] = reservoir;
     htmlCode = generateReservoirSideCode(reservoir);
     $('.menu-item').append(htmlCode);
 }
@@ -22,7 +23,7 @@ function getReservoirSide(){
 function generateReservoirSideCode(reservoir){
     htmlCode = '';
     for (let i=0; i < reservoir.length; i++) {
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+reservoir[i][0]+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick(0,'+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+reservoir[i][0]+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=1; j<reservoir[i].length;j++) {
             id = 'item'+i+'-'+j;
