@@ -1,0 +1,76 @@
+/* 圖片暗化 */
+.container-fluid{ 
+    background-color: black;
+}
+/* 圖片選擇與大小 */
+.infinity-image-container{
+    background: url('pic.jpg') center no-repeat;
+    background-size: cover;
+    opacity: 0.6;
+    height: 100vh; 
+}
+/* 右側登入介面 */
+.infinity-form-container{
+    background: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* form位置 */
+.infinity-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+.infinity-form .form-input {
+    position: relative;
+}
+/* 輸入框調整 */
+.infinity-form .form-input input {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    padding-left: 45px;
+}
+/* 設定icon位置在文字框裡 */
+.infinity-form .form-input span { 
+    position: absolute;
+    top: 8px;
+    padding-left: 20px;
+    color: #777;
+}
+
+.infinity-form .form-input  + input:focus,
+.infinity-form .form-input   input:valid {
+    border: 2px solid #4285f4;   
+}
+
+.infinity-form input[type="checkbox"]:not(:checked) + label::before{
+    background: transparent;
+    border:2px solid white;
+    width: 15px;
+    height: 15px;
+}
+
+/* button */
+.infinity-form button[type="submit"] { 
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #4285f4, #709de8);   /*Button Color*/
+    color: #fff;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.infinity-form button[type="submit"]:hover {
+    background: linear-gradient(45deg, #709de8, #4285f4);   /*Button color when hover*/
+}
+/* button */
