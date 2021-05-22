@@ -16,19 +16,19 @@
 	overflow-y:auto;
 }
 
-#slide1{
+#slide0{
 	background-image: url('../img/石門.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
 	background-repeat:no-repeat;
 	background-size: cover;
 	background-position: center; 
 }
-#slide2{
+#slide1{
 	background-image: url('../img/基德.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
 	background-repeat:no-repeat;
 	background-size: cover;
 	background-position: center; 
 }
-#slide3{
+#slide2{
 	background-image: url('../img/曾文.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
 	background-repeat:no-repeat;
 	background-size: cover;
