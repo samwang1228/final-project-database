@@ -10,30 +10,110 @@
 .slide{
 	width: 100%; /*以100%*/
 	height: 100vh; /*全螢幕*/
+	background-repeat:no-repeat;
+	background-size: cover;
+	background-position: center; 
 }
 
 .menu-item{
 	overflow-y:auto;
 }
 
-#slide0{
+#slideN0{
+	background-image: url('../img/新山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+}
+#slideN1{
 	background-image: url('../img/石門.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
-	background-repeat:no-repeat;
-	background-size: cover;
-	background-position: center; 
 }
-#slide1{
-	background-image: url('../img/基德.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
-	background-repeat:no-repeat;
-	background-size: cover;
-	background-position: center; 
+#slideN2{
+	background-image: url('../img/翡翠.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
 }
-#slide2{
+#slideN3{
+	background-image: url('../img/寶山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+ 
+}
+#slideN4{
+	background-image: url('../img/寶山第二.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW0{
+	background-image: url('../img/永和山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW1{
+	background-image: url('../img/明德.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW2{
+	background-image: url('../img/鯉魚潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW3{
+	background-image: url('../img/德基.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW4{
+	background-image: url('../img/石岡壩.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW5{
+	background-image: url('../img/霧社.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW6{
+	background-image: url('../img/日月潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideW7{
+	background-image: url('../img/湖山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS0{
+	background-image: url('../img/仁義潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS1{
+	background-image: url('../img/蘭潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS2{
+	background-image: url('../img/白河.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS3{
+	background-image: url('../img/烏山頭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS4{
 	background-image: url('../img/曾文.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
-	background-repeat:no-repeat;
-	background-size: cover;
-	background-position: center; 
+ 
 }
+#slideS5{
+	background-image: url('../img/南化.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS6{
+	background-image: url('../img/阿公店.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideS7{
+	background-image: url('../img/牡丹.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+#slideE0{
+	background-image: url('../img/東部沒水庫.jpg');/* ../為返回上一個資料夾的意思 而中間img是只進到img file*/
+
+}
+#slideE1{
+	/* background-image: url('../img/想不到吧.jpg'); ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/想不到吧.jpg');
+}
+#slideE2{
+	background-image: url('../img/廠廠.png'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+
+}
+
 
 .nav2{/*因為左右兩邊都是absolute所以遭到擠壓位置改變*/
 	position: absolute; /*設定abs位置*/
@@ -83,7 +163,7 @@ height:60px;
 width: 150px;
 font-size: 25px;
 }
-.reservoir-show-name{
+.reservoir-name{
 	padding-top: 30px ;
 }
 
