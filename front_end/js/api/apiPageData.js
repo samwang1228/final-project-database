@@ -1,7 +1,5 @@
-apiPageData();
-
 /* eslint-env jquery */
-function apiPageData(){ 
+function apiPageData(callback){ 
     for(let i=0;i<page_amount;i++){
         let page_data;
         if(i===0){
@@ -13,7 +11,18 @@ function apiPageData(){
                     ['南部',['仁義潭水庫','蘭潭水庫','白河水庫','烏山頭水庫','曾文水庫','南化水庫','阿公店水庫','牡丹水庫']],
                     ['東部',['東部沒水庫','想不到吧','ㄏㄏ']]
                 ]
+            $.post({
+                url:'http://localhost/reservoir_project/back_end/backend.php/',
+                data:JSON.stringify({type:'get_reservoir_data'})
+                },function(jsonResult){
+                    let result = JSON.parse(jsonResult);
+                    if(result['sucess']==='true'){
+                        console.log(result['data']);
+                        page_menu_list[i] = result['data'];
+                        callback(true);
+                    }
+                }
+            );
         }
-        page_menu_list[i] = page_data;  
     } 
 }

@@ -1,21 +1,14 @@
-updateSideCode(0)
-updatePageCode(0,0);
-
 function updateSideCode(page){
     let htmlCode = '';
-    for (let i=0; i < page_menu_list[page].length; i++) {
-        let position = 'N'
-        if(i==1){position='W'}
-        if(i==2){position='S'}
-        if(i==3){position='E'}
+    for (let i=0; i < page_menu_list[page].length; i++) {      
 
-        htmlCode += '<div onclick="onSideMenuTitleClick(0,'+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i][0]+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick(0,'+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['area_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
-        for (let j=0; j<page_menu_list[page][i][1].length;j++) {
+        for (let j=0; j<page_menu_list[page][i]['reservoir'].length;j++) {
             id = 'item'+i+'-'+j;
             onClick = 'onSideMenuItemClick('+i+','+j+')';
             // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
-            htmlCode += '<li id='+id+' onClick='+onClick+'>'+'<a href="#slide'+position+j+'">'+page_menu_list[page][i][1][j]+'</a></li>';
+            htmlCode += '<li id='+id+' onClick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
         }
         htmlCode += '</ul>';
     }
@@ -24,17 +17,13 @@ function updateSideCode(page){
 
 function updatePageCode(page,clicked_menu){
 	let htmlCode = '';
-    let position = 'N'
-    if(clicked_menu==1){position='W'}
-    if(clicked_menu==2){position='S'}
-    if(clicked_menu==3){position='E'}
 
-    for (let i=0; i<page_menu_list[page][clicked_menu][1].length;i++) {
-		htmlCode += "<section class='slide' id='slide"+position+(i)+"'>"
+    for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
+		htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
 		htmlCode += "<div class='container'>";
 		htmlCode += "<div class='row'>";
 		htmlCode += "<div class='col-md-12 upper text-center'>";
-		htmlCode += "<h2 class='reservoir-show-name'>"+page_menu_list[page][clicked_menu][1][i]+"</h2>"
+		htmlCode += "<h2 class='reservoir-show-name'>"+page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']+"</h2>"
 		htmlCode += "</div>";
 		htmlCode += "</div>";
 		htmlCode += "</div>";

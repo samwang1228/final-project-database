@@ -1,37 +1,36 @@
 <?php include('dealRequest.php'); ?>
+<?php include('sqlProvider.php'); ?>
 
 <?php
 $GLOBALS['SERVER_VERSION'] = '0523_1b'; 
 
 session_start();
-$postdata = file_get_contents("php://input",'r'); 
+$postdata = file_get_contents("php://input",'r');
 $data = json_decode($postdata,true);
 
-$type = $data['type'];
-if ($type == NULL){ 
+if ($data['type'] == NULL){ 
     error_and_logout('No command provided!');
     die('Dealing Unknown Request!');
 }
+$type = $data['type'];
 
-//Open a new connection to the MySQL server
-// $mysqli = new mysqli('localhost', 'root', '', 'table_name');
-// //Output any connection error
-// if ($mysqli->connect_error) {
-//     error_and_logout('SQL Not Respond!');
-//     die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
-// }
+// setup mysql ------------------------------------------------------
+$mysqli = new mysqli('localhost', 'root', '534*#876aA', 'reservior_project');
+//Output any connection error
+if ($mysqli->connect_error) {
+    error_and_logout('SQL Not Respond!');
+    die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+}
+setMySQL($mysqli);
 
-switch($type){  
-    case 'get_reservoir_list':
-        apiGetReservoirList($mysqli);
-        break;
+// dealing command----------------------------------------------------
+switch($type){
     case 'get_reservoir_data':
-        $range = $data['range'];    //area:N/E/W/S all
-        apiGetReservoirData($mysqli,$range);
+        apiGetReservoirData();
         break;
     case 'get_rainfall_data':
         $time = $data['time'];  //one_day week month
-        apiGetRainfallData($mysqli,$time);
+        apiGetRainfallData($time);
         break;
     default: //work
         error_and_logout('Not support command!');
