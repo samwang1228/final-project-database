@@ -16,6 +16,7 @@ function apiPageData(callback){
                 url:'http://localhost/reservoir_project/back_end/backend.php/',
                 data:JSON.stringify({type:'get_reservoir_data'})
                 },function(jsonResult){
+                    console.log(jsonResult);
                     let result = JSON.parse(jsonResult);
                     if(result['sucess']==='true'){
                         console.log(result['data']);
