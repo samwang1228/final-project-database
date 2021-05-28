@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-05-27 06:50:39
+-- 產生時間： 2021-05-28 08:28:22
 -- 伺服器版本： 10.4.17-MariaDB
 -- PHP 版本： 8.0.1
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `reservior_project`
+-- 資料庫： `reservoir_project`
 --
 
 -- --------------------------------------------------------
@@ -409,10 +409,10 @@ INSERT INTO `postcode_area` (`city`, `district`, `area`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `reservior`
+-- 資料表結構 `reservoir`
 --
 
-CREATE TABLE `reservior` (
+CREATE TABLE `reservoir` (
   `reservoir_id` varchar(5) NOT NULL,
   `reservoir_name` varchar(20) NOT NULL,
   `city` varchar(15) NOT NULL,
@@ -420,10 +420,10 @@ CREATE TABLE `reservior` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `reservior`
+-- 傾印資料表的資料 `reservoir`
 --
 
-INSERT INTO `reservior` (`reservoir_id`, `reservoir_name`, `city`, `district`) VALUES
+INSERT INTO `reservoir` (`reservoir_id`, `reservoir_name`, `city`, `district`) VALUES
 ('10201', '石門水庫', '桃園市', '龍潭區'),
 ('10204', '新山水庫', '基隆市', '安樂區'),
 ('10205', '翡翠水庫', '新北市', '新店區'),
@@ -449,10 +449,10 @@ INSERT INTO `reservior` (`reservoir_id`, `reservoir_name`, `city`, `district`) V
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `reservior_water_condition`
+-- 資料表結構 `reservoir_water_condition`
 --
 
-CREATE TABLE `reservior_water_condition` (
+CREATE TABLE `reservoir_water_condition` (
   `reservoir_id` char(5) NOT NULL,
   `date` date NOT NULL,
   `effective_water_storage` float NOT NULL,
@@ -492,16 +492,16 @@ ALTER TABLE `postcode_area`
   ADD PRIMARY KEY (`city`,`district`);
 
 --
--- 資料表索引 `reservior`
+-- 資料表索引 `reservoir`
 --
-ALTER TABLE `reservior`
+ALTER TABLE `reservoir`
   ADD PRIMARY KEY (`reservoir_id`),
   ADD KEY `city` (`city`,`district`);
 
 --
--- 資料表索引 `reservior_water_condition`
+-- 資料表索引 `reservoir_water_condition`
 --
-ALTER TABLE `reservior_water_condition`
+ALTER TABLE `reservoir_water_condition`
   ADD PRIMARY KEY (`reservoir_id`,`date`);
 
 --
@@ -531,16 +531,16 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- 資料表的限制式 `reservior`
+-- 資料表的限制式 `reservoir`
 --
-ALTER TABLE `reservior`
-  ADD CONSTRAINT `reservior_ibfk_1` FOREIGN KEY (`city`,`district`) REFERENCES `postcode_area` (`city`, `district`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `reservoir`
+  ADD CONSTRAINT `reservoir_ibfk_1` FOREIGN KEY (`city`,`district`) REFERENCES `postcode_area` (`city`, `district`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- 資料表的限制式 `reservior_water_condition`
+-- 資料表的限制式 `reservoir_water_condition`
 --
-ALTER TABLE `reservior_water_condition`
-  ADD CONSTRAINT `reservior_water_condition_ibfk_1` FOREIGN KEY (`reservoir_id`) REFERENCES `reservior` (`reservoir_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `reservoir_water_condition`
+  ADD CONSTRAINT `reservoir_water_condition_ibfk_1` FOREIGN KEY (`reservoir_id`) REFERENCES `reservoir` (`reservoir_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
