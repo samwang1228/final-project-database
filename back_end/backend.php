@@ -8,14 +8,14 @@ session_start();
 $postdata = file_get_contents("php://input",'r');
 $data = json_decode($postdata,true);
 
+// setup mysql ------------------------------------------------------
+setMySQL();
+
 if ($data['type'] == NULL){ 
     error_and_logout('No command provided!');
     die('Dealing Unknown Request!');
 }
 $type = $data['type'];
-
-// setup mysql ------------------------------------------------------
-setMySQL();
 
 // dealing command----------------------------------------------------
 switch($type){
