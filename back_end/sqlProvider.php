@@ -8,7 +8,13 @@
         return [$result,$num_row];
     }
 
-    function setMySQL($mysqli){
+    function setMySQL(){        
+        $mysqli = new mysqli('localhost', 'root', 'password', 'reservior_project');
+        //Output any connection error
+        if ($mysqli->connect_error) {
+            error_and_logout('SQL Not Respond!');
+            die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+        }
         $GLOBALS['mysqli'] = $mysqli;
     }
 

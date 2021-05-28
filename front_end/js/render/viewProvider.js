@@ -19,11 +19,16 @@ function updatePageCode(page,clicked_menu){
 	let htmlCode = '';
 
     for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
-		htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
-		htmlCode += "<div class='container'>";
+		// htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
+		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
+        reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
+        photoURL = 'url("./img/'+reservoir_name+'.jpg")';
+
+        htmlCode += "<section class='slide' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
+        htmlCode += "<div class='container'>";
 		htmlCode += "<div class='row'>";
 		htmlCode += "<div class='col-md-12 upper text-center'>";
-		htmlCode += "<h2 class='reservoir-show-name'>"+page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']+"</h2>"
+		htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>"
 		htmlCode += "</div>";
 		htmlCode += "</div>";
 		htmlCode += "</div>";

@@ -16,7 +16,12 @@
          
             for($x = 0; $x < $num_row; $x++) {
                 $row = mysqli_fetch_array($result);
-                array_push($GLOBALS['RESPOND']['data'][$i]['reservoir'],['reservoir_name'=>$row['reservoir_name']]);
+                array_push($GLOBALS['RESPOND']['data'][$i]['reservoir'],[
+                    'reservoir_name'=>$row['reservoir_name'],
+                    'reservoir_id'=>$row['reservoir_id']
+                    ]
+                );
+                // array_push($GLOBALS['RESPOND']['data'][$i]['reservoir'],['reservoir_id'=>$row['reservoir_id']]);
             }
         }
         

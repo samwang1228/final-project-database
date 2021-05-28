@@ -19,100 +19,99 @@
 	overflow-y:auto;
 }
 
-#slideN0{
-	background-image: url('../img/新山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+/* #slideN0{
+	background-image: url('../img/新山.jpg');
 }
 #slideN1{
-	background-image: url('../img/石門.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/石門.jpg');
 }
 #slideN2{
-	background-image: url('../img/翡翠.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/翡翠.jpg');
 
 }
 #slideN3{
-	background-image: url('../img/寶山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/寶山.jpg');
  
 }
 #slideN4{
-	background-image: url('../img/寶山第二.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/寶山第二.jpg');
 
 }
 #slideW0{
-	background-image: url('../img/永和山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/永和山.jpg');
 
 }
 #slideW1{
-	background-image: url('../img/明德.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/明德.jpg');
 
 }
 #slideW2{
-	background-image: url('../img/鯉魚潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/鯉魚潭.jpg');
 
 }
 #slideW3{
-	background-image: url('../img/德基.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/德基.jpg');
 
 }
 #slideW4{
-	background-image: url('../img/石岡壩.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/石岡壩.jpg');
 
 }
 #slideW5{
-	background-image: url('../img/霧社.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/霧社.jpg');
 
 }
 #slideW6{
-	background-image: url('../img/日月潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/日月潭.jpg');
 
 }
 #slideW7{
-	background-image: url('../img/湖山.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/湖山.jpg');
 
 }
 #slideS0{
-	background-image: url('../img/仁義潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/仁義潭.jpg');
 
 }
 #slideS1{
-	background-image: url('../img/蘭潭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/蘭潭.jpg');
 
 }
 #slideS2{
-	background-image: url('../img/白河.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/白河.jpg');
 
 }
 #slideS3{
-	background-image: url('../img/烏山頭.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/烏山頭.jpg');
 
 }
 #slideS4{
-	background-image: url('../img/曾文.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/曾文.jpg');
  
 }
 #slideS5{
-	background-image: url('../img/南化.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/南化.jpg');
 
 }
 #slideS6{
-	background-image: url('../img/阿公店.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/阿公店.jpg');
 
 }
 #slideS7{
-	background-image: url('../img/牡丹.jpg'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/牡丹.jpg'); 
 
 }
 #slideE0{
-	background-image: url('../img/東部沒水庫.jpg');/* ../為返回上一個資料夾的意思 而中間img是只進到img file*/
+	background-image: url('../img/東部沒水庫.jpg');
 
 }
 #slideE1{
-	/* background-image: url('../img/想不到吧.jpg'); ../為返回上一個資料夾的意思 而中間img是只進到img file */
-	background-image: url('../img/想不到吧.jpg');
+	
 }
 #slideE2{
-	background-image: url('../img/廠廠.png'); /* ../為返回上一個資料夾的意思 而中間img是只進到img file */
+	background-image: url('../img/廠廠.png');
 
-}
+} */
 
 
 .nav2{/*因為左右兩邊都是absolute所以遭到擠壓位置改變*/
