@@ -15,7 +15,7 @@ if ($data['type'] == NULL){
 $type = $data['type'];
 
 // setup mysql ------------------------------------------------------
-$mysqli = new mysqli('localhost', 'root', '534*#876aA', 'reservior_project');
+$mysqli = new mysqli('localhost', 'root', 'password', 'reservior_project');
 //Output any connection error
 if ($mysqli->connect_error) {
     error_and_logout('SQL Not Respond!');
