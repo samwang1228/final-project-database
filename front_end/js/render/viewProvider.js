@@ -28,7 +28,7 @@ function updatePageCode(page,clicked_menu){
         htmlCode += "<div class='container'>";
 		htmlCode += "<div class='row'>";
 		htmlCode += "<div class='col-md-12 upper text-center'>";
-		htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name\+"</h2>"
+		htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>"
 		htmlCode += "</div>";
 		htmlCode += "</div>";
 		htmlCode += "</div>";

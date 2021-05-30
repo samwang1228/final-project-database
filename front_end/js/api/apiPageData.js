@@ -13,7 +13,7 @@ function apiPageData(callback){
             //     ]
             
             $.post({
-                url:'http://localhost/reservoir_project/back_end/backend.php/',
+                url:'http://localhost/reservoir_project/back_end/backend.php',
                 data:JSON.stringify({type:'get_reservoir_data'})
                 },function(jsonResult){
                     console.log(jsonResult);
