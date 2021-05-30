@@ -23,7 +23,6 @@ function updatePageCode(page,clicked_menu){
 		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
         reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
         photoURL = 'url("./img/reservoir/'+reservoir_name+'.jpg")';
-
         htmlCode += "<section class='slide' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
         htmlCode += "<div class='container'>";
 		htmlCode += "<div class='row'>";
@@ -35,4 +34,5 @@ function updatePageCode(page,clicked_menu){
 		htmlCode += "</section>";
 	}
 	$('.page-container').html(htmlCode);
+
 }
