@@ -9,7 +9,7 @@
     }
 
     function setMySQL(){        
-        $mysqli = new mysqli('localhost', 'root', 'atnewsam26184970', 'reservoir_project');
+        $mysqli = new mysqli('localhost', 'root', 'password', 'reservoir_project');
         mysqli_query($mysqli,("SET NAMES UTF8"));
         //Output any connection error
         if ($mysqli->connect_error) {
