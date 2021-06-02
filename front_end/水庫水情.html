@@ -14,6 +14,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./js/global.js"></script>
 
+
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
@@ -41,7 +42,7 @@
 							<a class="nav-link" href="#" style="color: white">Shop</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link navbar-fixed" href="http://127.0.0.1/final_project/signIn.php" style="color: white">Account</a>
+							<a class="nav-link navbar-fixed" href="http://localhost/reservoir_project/front_end/login.php" style="color: white">Account</a>
 						</li>
 					</ul>
 				</div>
@@ -150,17 +151,17 @@
     	<!-- <script type="text/javascript" src="js/animation/animation.js"></script> -->
     	<script type="text/javascript">
 			//延緩載入animation.js 因為要等view載入才有效果
-    		function downloadJSAtOnload() {  
-    			var element = document.createElement("script");
-    			element.src = "js/animation/animation.js";
-    			document.body.appendChild(element);
-    		}
-    		if (window.addEventListener)
-    			window.addEventListener("load", downloadJSAtOnload, false);
-    		else if (window.attachEvent)
-    			window.attachEvent("onload", downloadJSAtOnload);
-    		else
-    			window.onload = downloadJSAtOnload;
-    	</script>
-    </body>
-    </html>
+			function downloadJSAtOnload() {  
+				var element = document.createElement("script");
+				element.src = "js/animation/animation.js";
+				document.body.appendChild(element);
+			}
+			if (window.addEventListener)
+				window.addEventListener("load", downloadJSAtOnload, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", downloadJSAtOnload);
+			else
+				window.onload = downloadJSAtOnload;
+		</script>
+</body>
+</html>
