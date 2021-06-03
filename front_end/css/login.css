@@ -1,3 +1,4 @@
+
 /* 圖片暗化 */
 .container-fluid{ 
     background-color: black;
@@ -17,6 +18,7 @@
     align-items: center;
     justify-content: center;
 }
+
 /* form位置 */
 .infinity-form{
     display: flex;

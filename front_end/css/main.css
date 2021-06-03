@@ -156,6 +156,9 @@
 .baccolor3{
 	background-color:  #ca8a8b;
 }
+.baccolor4{
+	background: linear-gradient(to right, #517fa4 0%, #243949 100%);
+}
 .navbar-fixed { /* just an estimate of your sidebar's width */
 /* height: 500px; */
 height:60px;

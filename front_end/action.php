@@ -14,7 +14,7 @@
 		if ( $_POST["ID"]==$usename || $_POST["password"]==$password ){
 			$_SESSION['usename']=$_POST['ID'];
 			$_SESSION['password']=$_POST['password'];
-			header ('Location: success.php');
+			header ('Location: insertreservoir.html');
 		}
 	?>
 </body>
