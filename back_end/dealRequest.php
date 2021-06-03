@@ -32,4 +32,22 @@
     function apiGetRainfallData($time){
 
     }
+
+    function apiLogin($postUSER,$postPWD){
+        $usename="1234";
+		$password="1234";
+
+		if(strcmp($postUSER,$usename)!=0 || strcmp($postPWD,$password)!=0){
+			// die("<script>  location.href=\"fail.php\"; </script>"); 
+            $GLOBALS['RESPOND']['sucess'] = 'false';
+            echo json_encode($GLOBALS['RESPOND']);	
+            return;
+		}
+
+		$_SESSION['usename']=$postUSER;
+		$_SESSION['password']=$postPWD;
+		// header ('Location: insertreservoir.html');	
+        echo json_encode($GLOBALS['RESPOND']);	
+    }
+    
 ?>

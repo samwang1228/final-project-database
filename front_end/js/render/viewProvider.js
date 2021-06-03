@@ -8,7 +8,7 @@ function updateSideCode(page){
             id = 'item'+i+'-'+j;
             onClick = 'onSideMenuItemClick('+i+','+j+')';
             // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
-            htmlCode += '<li id='+id+' onClick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'" onclick="switchAnimation()">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
+            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'" onclick="switchAnimation()">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
         }
         htmlCode += '</ul>';
     }

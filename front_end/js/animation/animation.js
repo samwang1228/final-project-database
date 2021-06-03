@@ -1,5 +1,5 @@
 $(function (){
-    setTimeout(1500);  //延遲1.5秒
+    setTimeout(1000);  //延遲1.5秒
   })
 $( document ).ready(function() {
   var loading = new TimelineMax();

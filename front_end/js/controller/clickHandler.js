@@ -1,3 +1,4 @@
+/* eslint-env jquery */
 function onSideMenuTitleClick(page,clicked_menu){
 	console.log(page_menu_list);
 	let menu=document.getElementById("menu-"+clicked_menu);
@@ -11,8 +12,29 @@ function onSideMenuTitleClick(page,clicked_menu){
 }
 
 function onSideMenuItemClick(i,j){	
-	// $('.reservoir-show-name').html($('#item'+i+'-'+j).html());
-	
 	// add some code here, when click, slide to the card
 }
 
+function onFormLoginButtomClick(){
+	form_username = $("#form_login_username").val();
+	form_password = $("#form_login_password").val();
+
+	// remember to encrypt the password before send
+
+	$.post({
+		url:backend_address,
+		data:JSON.stringify({type:'login',ID:form_username,password:form_password})
+		},function(jsonResult){
+			let result = JSON.parse(jsonResult);
+
+			if(result['sucess']==='false'){ // login failed
+				// think of change text on this php (error message)
+				// and no need to redirect page
+				document.location.href="fail.php";
+				return;
+			}
+			// login success
+			document.location.href="insertreservoir.html";
+		}
+	);
+}

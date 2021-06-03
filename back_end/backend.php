@@ -26,6 +26,11 @@ switch($type){
         $time = $data['time'];  //one_day week month
         apiGetRainfallData($time);
         break;
+    case 'login':
+        $postUSER = $data['ID'];
+        $postPWD = $data['password'];
+        apiLogin($postUSER,$postPWD);
+        break;
     default: //work
         error_and_logout('Not support command!');
         break;
