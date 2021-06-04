@@ -44,6 +44,10 @@
 						</div>
 						</div>
 						</div>
+
+						<div style="color:#cf0000" id="login_error_message">
+						</div>
+						
 					<!-- Login Button -->
 					<div class="mb-3"> 
 						<button class="btn btn-block" onclick="onFormLoginButtomClick()">Login</button>
