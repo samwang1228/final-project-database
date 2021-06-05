@@ -32,4 +32,18 @@
     function apiGetRainfallData($time){
 
     }
+
+    function apiLogin($postUSER,$postPWD){
+        $usename="1234";
+		$password="1234";
+        if(strcmp($postUSER,$usename)!=0 || strcmp($postPWD,$password)){
+            // login failed
+            $GLOBALS['RESPOND']['sucess'] = 'false';
+            echo json_encode($GLOBALS['RESPOND']);
+            return;
+		} //失敗時跳轉fail.php
+        
+		//login sucess
+        echo json_encode($GLOBALS['RESPOND']);
+    }
 ?>

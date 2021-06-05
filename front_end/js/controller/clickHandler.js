@@ -27,7 +27,6 @@ function onFormLoginButtomClick(){
 		data:JSON.stringify({type:'login',ID:form_username,password:form_password})
 		},function(jsonResult){
 			let result = JSON.parse(jsonResult);
-			console.log(result);
 			if(result['sucess']==='false'){ // login failed
 				// think of change text on this php (error message)
 				// and no need to redirect page
