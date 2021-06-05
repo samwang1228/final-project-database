@@ -8,15 +8,35 @@
     align-items: center;
     justify-content: center;
 }
-.manager-image-container{
+
+.reservoir-image-container{
     background: url('pic.jpg') center no-repeat; */
+    background-size: cover;
+    opacity: 0.6;
+    height: 100vh; 
+}
+
+.postcode-image-container{
+    background: url('../img/postcode/臺北市.jpg') center no-repeat; */
+    background-size: cover;
+    opacity: 0.6;
+    height: 100vh; 
+}
+.live-image-container{
+    background: url('../img/live.jpg') center no-repeat; */
+    background-size: cover;
+    opacity: 0.6;
+    height: 100vh; 
+}
+.argi-image-container{
+    background: url('../img/argi.jpg') center no-repeat; */
     background-size: cover;
     opacity: 0.6;
     height: 100vh; 
 }
 .fixed-button{
     position: relative;
-    top: -30px;
+    top: -10px;
     left: 145px;
 }
 .infinity-form .form-input input {
@@ -33,7 +53,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 /* .manager-form .form-input {
     position: relative;

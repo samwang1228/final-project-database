@@ -61,7 +61,7 @@
 }
 
 /* button */
-.infinity-form button[type="submit"] { 
+.infinity-form button { 
     margin-top: 10px;
     border: none;
     cursor: pointer;
@@ -72,7 +72,7 @@
     transition: 0.5s;
 }
 
-.infinity-form button[type="submit"]:hover {
+.infinity-form button :hover {
     background: linear-gradient(45deg, #709de8, #4285f4);   /*Button color when hover*/
 }
 /* button */

@@ -7,6 +7,7 @@
 </head>
 <body>
 	<?php
+	if(isset($_POST["data-submit"])){
 		$link = mysqli_connect('localhost', 'root', 'password', 'reservoir_project');
 
 		if ($link)
@@ -22,15 +23,18 @@
 			//否則就代表連線失敗 mysqli_connect_error() 是顯示連線錯誤訊息
 			echo '無法連線mysql資料庫 :<br/>' . mysqli_connect_error();
 		}
-		$reservoir_id=$_POST["reservoir_id"];
-		$reservoir_name=$_POST["reservoir_name"];
 		$city=$_POST["city"];
 		$district=$_POST["district"];
+		$area=$_POST["area"];
 		echo $city;
-		$sql = "INSERT INTO user( userid, password, nickname) VALUES ('$reservoir_id','$reservoir_name','$city')";	
+		$sql = "INSERT INTO user( userid, password, nickname) VALUES ('$city','$district','$area')";	
 		$result = mysqli_query($link, $sql);
 		echo $sql;
-		die("<script> alert(\"已新增成功\"); location.href=\"insertreservoir.html\"; </script>"); 
+		die("<script> alert(\"已新增成功\"); location.href=\"insertpostcode.html\"; </script>"); 
+	}
+	else{
+		echo "fail";
+	}
 	?> 
 </body>
 </html>

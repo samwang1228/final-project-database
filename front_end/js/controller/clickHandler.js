@@ -19,7 +19,7 @@ function onSideMenuItemClick(i,j){
 function onFormLoginButtomClick(){
 	form_username = $("#form_login_username").val();
 	form_password = $("#form_login_password").val();
-
+	console.log(form_password);
 	// remember to encrypt the password before send
 
 	$.post({
@@ -27,7 +27,7 @@ function onFormLoginButtomClick(){
 		data:JSON.stringify({type:'login',ID:form_username,password:form_password})
 		},function(jsonResult){
 			let result = JSON.parse(jsonResult);
-
+			console.log(result);
 			if(result['sucess']==='false'){ // login failed
 				// think of change text on this php (error message)
 				// and no need to redirect page
