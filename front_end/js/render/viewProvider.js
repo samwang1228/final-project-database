@@ -34,15 +34,14 @@ function updatePageCode(page,clicked_menu){
 }
 
 function updateSideCodeReservoir(htmlCode,page){
-    for (let i=0; i < page_menu_list[page].length; i++) {      
-
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction();" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['area_name']+'</div>';
+    for (let i=0; i < page_menu_list[page].length; i++) {
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['area_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=0; j<page_menu_list[page][i]['reservoir'].length;j++) {
             id = 'item'+i+'-'+j;
             onClick = 'onSideMenuItemClick('+i+','+j+')';
             // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
-            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction();">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
+            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction('+i+');">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
         }
         htmlCode += '</ul>';
     }
@@ -79,42 +78,48 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
 function updatePageCodeRainfall(htmlCode,page,clicked_menu){
 
 }
-function createCircle(clicked_menu,i){
-    for(let j=0;j<8;j++) //resvoir
-    {
+
+function createCircle(clicked_menu){
+    console.log(clicked_menu);    
+    for(let j=0;j<page_menu_list[page][clicked_menu]['reservoir'].length;j++){ //resvoir
         // var temp = '#water'+clicked_menu,i;
         // console.log(temp);
-       let waterValue = Math.floor(Math.random()*100); //把sql的%數放在這裡
-       // console.log(waterValue);
-       if(waterValue<=20)
-       {
+
+        effective_water_storage = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_water_storage']
+        effective_capacity = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_capacity']
+        // let waterValue = Math.floor(Math.random()*100); //把sql的%數放在這裡
+        let waterValue = effective_water_storage/effective_capacity*100.0;
+        console.log(effective_capacity);
+
+        // console.log(waterValue);
+        if(waterValue<=20){
            waterColor='rgb(255,99,71)';
            textColor='rgb(255, 68, 68)';
-       }
-       if(waterValue>=60)
-       {
+        }
+        if(waterValue>=60){
            waterColor='rgba(25, 139, 201, 1)';
            textColor='rgba(06, 85, 128, 0.8)';
-       }
-       if(waterValue>20&&waterValue<60)
-       {
+        }
+        if(waterValue>20&&waterValue<60){
            waterColor='rgb(255, 160, 119)';
            textColor='rgb(255,99,71)';
-       }
-       $("#water"+j).waterbubble({
+        }
+        $("#water"+j).waterbubble({
            txt: ('' + waterValue).slice(-3).toString() + " %",
            data: waterValue/100,
            animation: true,
            waterColor:waterColor,
            textColor:textColor
-       });
+        });
+    }
 }
-}
+
 // setInterval(function(){ createCircle();// this will run after every 1 seconds
 // }, 1000);
-function setCircleFunction(){
-    setTimeout(function(){ createCircle(); }, 1000);
+
+function setCircleFunction(clicked_menu){
+    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,clicked_menu);
 }
-setTimeout(function(){ createCircle(); }, 1000);
+setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
 
 // window.clearInterval(timeoutID);
