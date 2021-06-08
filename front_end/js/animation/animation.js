@@ -17,12 +17,14 @@ $( document ).ready(function() {
 });
 
 function switchAnimation(){
- var loading = new TimelineMax();
- loading.fromTo(".upper h2",3,{
+ let ani = new TimelineMax();
+ ani.fromTo(".upper h2",3,{
   autoAlpha:0,
   y:-20
 },{
   autoAlpha:1,
   y:0
 });
+ console.log(ani);
 }
+
