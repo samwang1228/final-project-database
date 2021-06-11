@@ -1,8 +1,8 @@
 // the global file save page_info to loading each page
 // remember to load this file at head of the document
 
-//var SERVER_ADDRESS = 'http://localhost/'
-var SERVER_ADDRESS = 'http://ec2-3-92-133-135.compute-1.amazonaws.com/'
+var SERVER_ADDRESS = 'http://localhost/'
+//var SERVER_ADDRESS = 'http://ec2-3-92-133-135.compute-1.amazonaws.com/'
 
 var frontend_address = SERVER_ADDRESS + 'reservoir_project/front_end/'
 var backend_address = SERVER_ADDRESS + 'reservoir_project/back_end/backend.php';

@@ -14,11 +14,10 @@
             // WHERE reservoir.city=postcode_area.city AND reservoir.district=postcode_area.district AND postcode_area.area='".$area_list[$i]."'";
             
             $query = "SELECT date,reservoir.reservoir_id ,reservoir_name,effective_water_storage,effective_capacity 
-            FROM reservoir_water_condition r1,reservoir,postcode_area 
+            FROM reservoir_water_condition r1,reservoir,city_area 
             WHERE r1.reservoir_id=reservoir.reservoir_id 
-            AND reservoir.city=postcode_area.city 
-            AND reservoir.district=postcode_area.district 
-            AND postcode_area.area='".$area_list[$i]."' 
+            AND reservoir.city=city_area.city 
+            AND city_area.area='".$area_list[$i]."' 
             AND date=(SELECT MAX(date) FROM reservoir_water_condition r2 
                 WHERE r1.reservoir_id=r2.reservoir_id)";
 
