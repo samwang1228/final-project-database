@@ -23,7 +23,7 @@ switch($type){
         apiGetReservoirData();
         break;
     case 'get_rainfall_data':
-        $time = $data['time'];  //one_day week month
+        $time = $data['time'];  //daily weekly monthly
         apiGetRainfallData($time);
         break;
     case 'login':

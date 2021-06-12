@@ -49,7 +49,18 @@ function updateSideCodeReservoir(htmlCode,page){
 }
 
 function updateSideCodeRainfall(htmlCode,page){
-
+    for (let i=0; i < page_menu_list[page].length; i++) {
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['city_name']+'</div>';
+        htmlCode += '<ul id="menu-'+i+'" class="hide">';
+        for (let j=0; j<page_menu_list[page][i]['rain_station'].length;j++) {
+            id = 'item'+i+'-'+j;
+            onClick = 'onSideMenuItemClick('+i+','+j+')';
+            // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
+            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction('+i+');">'+page_menu_list[page][i]['rain_station'][j]['rain_station_name']+'</a></li>';
+        }
+        htmlCode += '</ul>';
+    }
+    return htmlCode;
 }
 
 function updatePageCodeReservoir(htmlCode,page,clicked_menu){
@@ -120,6 +131,10 @@ function createCircle(clicked_menu){
 function setCircleFunction(clicked_menu){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,clicked_menu);
 }
-setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
+
+// loading animation
+if(page==0){
+    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
+}
 
 // window.clearInterval(timeoutID);
