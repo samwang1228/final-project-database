@@ -87,7 +87,25 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
 }
 
 function updatePageCodeRainfall(htmlCode,page,clicked_menu){
-
+   for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
+        // htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
+        reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
+        reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
+        photoURL = 'url("./img/reservoir/'+reservoir_name+'.jpg")';
+        htmlCode += "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
+        htmlCode += "<div class='container'>";
+        htmlCode += "<div class='row'>";
+        htmlCode += "<div class='col-md-12 upper text-center'>";
+        htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>";
+        htmlCode += '<div">';
+        htmlCode += '<canvas id="water'+i+'"></canvas>';
+        htmlCode += "</div>";
+        htmlCode += "</div>";
+        htmlCode += "</div>";
+        htmlCode += "</div>";
+        htmlCode += "</section>";
+    }
+    return htmlCode;
 }
 
 function createCircle(clicked_menu){
@@ -104,25 +122,25 @@ function createCircle(clicked_menu){
 
         // console.log(waterValue);
         if(waterValue<=20){
-           waterColor='rgb(255,99,71)';
-           textColor='rgb(255, 68, 68)';
-        }
-        if(waterValue>=60){
-           waterColor='rgba(25, 139, 201, 1)';
-           textColor='rgba(06, 85, 128, 0.8)';
-        }
-        if(waterValue>20&&waterValue<60){
-           waterColor='rgb(255, 160, 119)';
-           textColor='rgb(255,99,71)';
-        }
-        $("#water"+j).waterbubble({
-           txt: ('' + waterValue).slice(-3).toString() + " %",
-           data: waterValue/100,
-           animation: true,
-           waterColor:waterColor,
-           textColor:textColor
-        });
-    }
+         waterColor='rgb(255,99,71)';
+         textColor='rgb(255, 68, 68)';
+     }
+     if(waterValue>=60){
+         waterColor='rgba(25, 139, 201, 1)';
+         textColor='rgba(06, 85, 128, 0.8)';
+     }
+     if(waterValue>20&&waterValue<60){
+         waterColor='rgb(255, 160, 119)';
+         textColor='rgb(255,99,71)';
+     }
+     $("#water"+j).waterbubble({
+         txt: ('' + waterValue).slice(-3).toString() + " %",
+         data: waterValue/100,
+         animation: true,
+         waterColor:waterColor,
+         textColor:textColor
+     });
+ }
 }
 
 // setInterval(function(){ createCircle();// this will run after every 1 seconds
@@ -137,4 +155,23 @@ if(page==0){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
 }
 
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      datasets: [{
+        label: '降雨量',
+        data: [20, 22.3, 25, 26, 28, 31.2, 33],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+    }]
+},
+});
 // window.clearInterval(timeoutID);
+// 測站名稱:page_menu_list[page][縣市index]['rain_station'][測站index]['rain_station_name']
+// 測站雨量:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall']
+// for(let i=0;i<page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'].length;i++){
+//     測量日期:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'][i]['date']
+//     測量雨量:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'][i]['today_rainfall']
+// }
