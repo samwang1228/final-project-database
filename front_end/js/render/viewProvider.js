@@ -153,21 +153,37 @@ function setCircleFunction(clicked_menu){
 // loading animation
 if(page==0){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
+}else if(page==1){
+
 }
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-      datasets: [{
-        label: '降雨量',
-        data: [20, 22.3, 25, 26, 28, 31.2, 33],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-    }]
-},
-});
+function rainfall_graph(clicked_menu){
+    for(let x=0;x<page_menu_list[page][clicked_menu]['rain_station'];x++){ //each rain_station
+        let day_label=[];
+        let rainfall_label=[];
+        for(let i=0;i<page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'].length;i++){ //each day
+            day_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['date']);
+            rainfall_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['today_rainfall']);
+        }
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: day_label,
+            datasets: [{
+                label: '降雨量',
+                data: rainfall_label,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+            }]
+            },
+        });
+
+    }        
+    
+}
+
 // window.clearInterval(timeoutID);
 // 測站名稱:page_menu_list[page][縣市index]['rain_station'][測站index]['rain_station_name']
 // 測站雨量:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall']
