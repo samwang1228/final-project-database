@@ -35,13 +35,13 @@ function updatePageCode(page,clicked_menu){
 
 function updateSideCodeReservoir(htmlCode,page){
     for (let i=0; i < page_menu_list[page].length; i++) {
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['area_name']+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['area_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=0; j<page_menu_list[page][i]['reservoir'].length;j++) {
             id = 'item'+i+'-'+j;
             onClick = 'onSideMenuItemClick('+i+','+j+')';
             // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
-            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction('+i+');">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
+            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction('+i+')">'+page_menu_list[page][i]['reservoir'][j]['reservoir_name']+'</a></li>';
         }
         htmlCode += '</ul>';
     }
@@ -50,13 +50,13 @@ function updateSideCodeReservoir(htmlCode,page){
 
 function updateSideCodeRainfall(htmlCode,page){
     for (let i=0; i < page_menu_list[page].length; i++) {
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['city_name']+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setRainfall_graph('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page][i]['city_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=0; j<page_menu_list[page][i]['rain_station'].length;j++) {
             id = 'item'+i+'-'+j;
             onClick = 'onSideMenuItemClick('+i+','+j+')';
             // htmlCode += '<li id='+id+' onClick='+onClick+'>'+page_menu_list[page][i][1][j]+'</li>';
-            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setCircleFunction('+i+');">'+page_menu_list[page][i]['rain_station'][j]['rain_station_name']+'</a></li>';
+            htmlCode += '<li id='+id+' onclick='+onClick+'>'+'<a href="#slide'+area_list[i]+j+'"onclick="switchAnimation(); setRainfall_graph('+i+');">'+page_menu_list[page][i]['rain_station'][j]['rain_station_name']+'</a></li>';
         }
         htmlCode += '</ul>';
     }
@@ -87,25 +87,25 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
 }
 
 function updatePageCodeRainfall(htmlCode,page,clicked_menu){
-   for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
-        // htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
-        reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
-        reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
-        photoURL = 'url("./img/reservoir/'+reservoir_name+'.jpg")';
-        htmlCode += "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
-        htmlCode += "<div class='container'>";
-        htmlCode += "<div class='row'>";
-        htmlCode += "<div class='col-md-12 upper text-center'>";
-        htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>";
-        htmlCode += '<div">';
-        htmlCode += '<canvas id="water'+i+'"></canvas>';
-        htmlCode += "</div>";
-        htmlCode += "</div>";
-        htmlCode += "</div>";
-        htmlCode += "</div>";
-        htmlCode += "</section>";
-    }
-    return htmlCode;
+   for (let i=0; i<page_menu_list[page][clicked_menu]['rain_station'].length;i++) {
+    htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
+    rain_station_name = page_menu_list[page][clicked_menu]['rain_station'][i]['rain_station_name']
+    photoURL = 'url("./css/下雨.gif")';
+    htmlCode+= "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
+    htmlCode+='<div class="text-center upper">'
+    htmlCode+='<h2>'+rain_station_name+'</h2>';
+    htmlCode+='<div>'        
+    htmlCode+='<div class="container-fluid">'
+    htmlCode+= "<div class='row'>"
+    htmlCode+='<div class="col-lg-2 col-md-6 d-none  d-md-block "></div>'
+    htmlCode+= '<div class="col-lg-8 col-md-6 infinity-form-container" >'
+    htmlCode+='<canvas id="myChart'+i+'" width="900" height="380" ></canvas>';
+    htmlCode+= '</div>';
+    htmlCode+= '</div>';
+    htmlCode+='</div>';
+    htmlCode+='</section>'
+}
+return htmlCode;
 }
 
 function createCircle(clicked_menu){
@@ -149,45 +149,63 @@ function createCircle(clicked_menu){
 function setCircleFunction(clicked_menu){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,clicked_menu);
 }
-
+function setRainfall_graph(clicked_menu){
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,clicked_menu);
+}
 // loading animation
 if(page==0){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
 }else if(page==1){
-
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,0);
 }
 
 function rainfall_graph(clicked_menu){
-    for(let x=0;x<page_menu_list[page][clicked_menu]['rain_station'];x++){ //each rain_station
+    for(let x=0;x<page_menu_list[page][clicked_menu]['rain_station'].length;x++){ //each rain_station
         let day_label=[];
         let rainfall_label=[];
         for(let i=0;i<page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'].length;i++){ //each day
             day_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['date']);
             rainfall_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['today_rainfall']);
         }
-
-        var ctx = document.getElementById('myChart').getContext('2d');
+        console.log(day_label);
+        console.log(rainfall_label);
+        console.log(x);
+        var ctx = document.getElementById('myChart'+x);
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-            labels: day_label,
-            datasets: [{
-                label: '降雨量',
-                data: rainfall_label,
-                fill: false,
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              datasets: [{
+                label: '降雨量(毫米)',
+                color:'white',
+                data: [randomScalingFactor(),randomScalingFactor(),3, 25, randomScalingFactor(), 28, 31.2, randomScalingFactor()],
+                fill: true,
                 borderColor: 'rgb(75, 192, 192)',
-            }]
+            // backgroundColor:'white',
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                ticks: {
+                    color:'white',
+                }
             },
-        });
+            x: {
+                ticks: {
+                    color:'white',
+                }
+            },
+          
+
+        }
+    }
+});
 
     }        
-    
 }
+var randomScalingFactor = function() { 
 
-// window.clearInterval(timeoutID);
-// 測站名稱:page_menu_list[page][縣市index]['rain_station'][測站index]['rain_station_name']
-// 測站雨量:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall']
-// for(let i=0;i<page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'].length;i++){
-//     測量日期:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'][i]['date']
-//     測量雨量:page_menu_list[page][縣市index]['rain_station'][測站index]['rainfall'][i]['today_rainfall']
-// }
+    return Math.round(Math.random() * 100) 
+
+}; 
