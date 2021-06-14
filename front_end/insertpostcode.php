@@ -19,7 +19,7 @@ require_once 'connect.php';
 			$sql_postcode="INSERT INTO postcode_area( city, district) VALUES ('$city','$district')";
 			$insert_postcode=mysqli_query($link,$sql_postcode);
 			if($insert_postcode){
-				die("<script> alert(\"已新增成功\"); location.href=\"insertpostcode.html\"; </script>"); 
+				die("<script> alert(\"已新增成功\"); location.href=\"insertrain.html\"; </script>"); 
 			}
 			else 
 				echo '鄉鎮插入失敗可能已存在或格式不符合';
