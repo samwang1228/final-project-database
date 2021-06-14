@@ -7,6 +7,13 @@
 	left: 20px;
 	top: -15px;
 }
+.manager-logo {
+    /* background-color: #926e6f; */
+    width: 200px;
+    position: absolute;/* 不讓位置跑掉 下面為固定位置*/
+    left: 20px;
+    top: -15px;
+}
 .section{
 	width: 100%; /*以100%*/
 	height: 100vh; /*全螢幕*/

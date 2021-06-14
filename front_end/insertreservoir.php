@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start(); 
+require_once 'connect.php';
+?>
 
 <html>
 <head>
 	<meta charset="utf-8">
 </head>
 <body>
+	<!-- ok ii -->
 	<?php
-		$link = mysqli_connect('localhost', 'root', 'password', 'reservoir_project');
+	$reservoir_id=$_POST["reservoir_id"];
+	$reservoir_name=$_POST["reservoir_name"];
+	$city=$_POST["city"];
+	$district=$_POST["district"];
+	$file_name=$_FILES["file"]["name"];
+	$file_type=$_FILES["file"]["type"];
+	$file_size=$_FILES["file"]["size"];
+    if(isset($_POST['data-submit'])){   //限制圖片型別格式，大小
 
-		if ($link)
-		{
-			//若傳回正值，就代表已經連線
-			//設定連線編碼為UTF-8
-			//mysqli_query(資料庫連線, "語法內容") 為執行sql語法的函式
-			mysqli_query($link, "SET NAMES utf8");
-			echo "已正確連線";
-		}
-		else
-		{
-			//否則就代表連線失敗 mysqli_connect_error() 是顯示連線錯誤訊息
-			echo '無法連線mysql資料庫 :<br/>' . mysqli_connect_error();
-		}
-		$reservoir_id=$_POST["reservoir_id"];
-		$reservoir_name=$_POST["reservoir_name"];
-		$city=$_POST["city"];
-		$district=$_POST["district"];
-		echo $city;
-		$sql = "INSERT INTO user( userid, password, nickname) VALUES ('$reservoir_id','$reservoir_name','$city')";	
-		$result = mysqli_query($link, $sql);
-		echo $sql;
-		die("<script> alert(\"已新增成功\"); location.href=\"insertreservoir.html\"; </script>"); 
+    	$filename='img/reservoir/'.$reservoir_id.'.jpg';
+    	echo $filename;
+    }
+    else {
+    	echo "fail";
+    }
+    if ((($file_type == "image/gif")
+    	|| ($file_type == "image/jpeg")
+    	|| ($file_type == "image/jpg"))
+    	&& ($file_size < 2000000)) {
+    	if ($_FILES["file"]["error"] > 0) {
+    		echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+    	} 
+    	else {
+    		echo "檔名: " . $file_name . "<br />";
+    		echo "檔案型別: " . $file_type . "<br />";
+    		echo "檔案大小: " . ($file_size / 1024) . " Kb<br />";
+                    // echo "快取檔案: " . $file_name . "<br />";
+                //設定檔案上傳路徑，選擇指定資料夾
+    		if (file_exists($filename)) {
+    			echo $reservoir_name . " already exists. ";
+    		} 
+    		else {
+    			move_uploaded_file($_FILES['file']['tmp_name'], $filename);
+                        echo "儲存於: " . $filename;//上傳成功後提示上傳資訊
+                    }
+                }
+            } 
+            else {
+                echo "上傳失敗！";//上傳失敗後顯示錯誤資訊
+                echo "檔名: " . $file_size . "<br />";
+                echo "檔案型別: " . $file_type . "<br />";
+                echo "檔案大小: " . ($file_size / 1024) . " Kb<br />";
+                echo "快取檔案: " . $file_name . "<br />";
+
+            }
+	echo $city;
+	$sql = "INSERT INTO reservoir( reservoir_id, reservoir_name, city,district) VALUES ('$reservoir_id','$reservoir_name','$city','$district')";	
+	$result = mysqli_query($link, $sql);
+	echo $sql;
+	die("<script> alert(\"已新增成功\"); location.href=\"insertreservoircondition.html\"; </script>"); 
 	?> 
 </body>
 </html>

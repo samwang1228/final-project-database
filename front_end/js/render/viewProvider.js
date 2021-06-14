@@ -68,7 +68,7 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
 		// htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
 		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
         reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
-        photoURL = 'url("./img/reservoir/'+reservoir_name+'.jpg")';
+        photoURL = 'url("./img/reservoir/'+reservoir_id+'.jpg")';
         htmlCode += "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
         htmlCode += "<div class='container'>";
         htmlCode += "<div class='row'>";

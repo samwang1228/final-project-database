@@ -27,22 +27,25 @@
 				</button>
 				<div class="collapse navbar-collapse baccolor4 " id="navbarNav">
 					<ul class="navbar-nav  mx-auto">  <!--置中-->
+						<li class="nav-item ">
+							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
+						</li>
 						<li class="nav-item manager-color" >
 							<a class="nav-link  navbar-fixed  text-center" href="#" style="color: white">水庫資料</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link  navbar-fixed text-center" href="insertpostcode.html" style="color: white">地區資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="insertpostcode.html" style="color: white">地區與降雨</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link  navbar-fixed text-center" href="insertwater.html" style="color: white">用水資料</a>
+							<a class="nav-link  navbar-fixed " href="insertwater.html" style="color: white">用水資料</a>
 						</li>
 					</ul>
 					<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
 						<li class="nav-item">
-							<a class="nav-link navbar-fixed" href="http://localhost/reservoir_project/front_end/login.php" style="color: white">修改與刪除</a>
+							<a class="nav-link navbar-fixed text-center" href="http://localhost/reservoir_project/front_end/login.php" style="color: white">update</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link navbar-fixed" href="http://localhost/reservoir_project/front_end/login.php" style="color: white">Log Out</a>
+							<a class="nav-link navbar-fixed" href="login.php" style="color: white">Log Out</a>
 						</li>
 					</ul>
 				</div>
@@ -65,35 +68,37 @@
 							XXX您好!							
 						</h2>
 						<h3 class="text-center" style="color:white">請輸入想新增的水庫</h3>
-						<form  action="uploadpicture.php" method="post" enctype="multipart/form-data" target="upload">
-							<labe style ="color:white">選擇圖片:<input class="form-control" id="customFile" type="file" name="file"  required></labe>
-							<input type="submit" class="btn btn-outline-info mt-2"name="reservoir-submit" value ="送出">
+						<form  action="insertreservoir.php" method="post" enctype="multipart/form-data" target="upload">
+							<div class="mb-3">
+								<labe style ="color:white">選擇圖片:<input class="form-control" id="customFile" type="file" name="file"  required></labe>
+							</div>
+							<!-- <input type="submit" class="btn btn-outline-info mt-2"name="reservoir-submit" value ="送出">
 							</form>
-								<form class="px-3"  action="insertreservoir.php" name="form1" method="post">
+							<form class="px-3"  action="insertreservoir.php" name="form1" method="post"> -->
 
-									<div class="form-input mb-3">
-										<input class="form-control form-control-lg " type="text" name="reservoir_id" placeholder="水庫ID" required>
-									</div >
-									<div class="form-input mb-3">
-										<input class="form-control form-control-lg " type="text" name="reservoir_name" placeholder="水庫名稱" required>
-									</div>
-									<div class="form-input mb-3">
-										<input class="form-control form-control-lg " type="text" name="city"placeholder="水庫所在的縣市" required>
-									</div>
-									<div class="form-input mb-3">
-										<input class="form-control form-control-lg " type="text" name="district"placeholder="水庫所在的鎮鄉" required>
-									</div>
-
+								<div class="form-input mb-3">
+									<input class="form-control form-control-lg " type="text" name="reservoir_id" placeholder="水庫ID" required>
+								</div >
+								<div class="form-input mb-3">
+									<input class="form-control form-control-lg " type="text" name="reservoir_name" placeholder="水庫名稱" required>
 								</div>
-								<span>
-									<input type="submit" class="btn btn-outline-info fixed-button" name="data-submit" value="確認">
-								</form>
-								<button type="button" class="btn btn-outline-info fixed-button">取消</button>
-							</span>
-						</div>
+								<div class="form-input mb-3">
+									<input class="form-control form-control-lg " type="text" name="city"placeholder="水庫所在的縣市" required>
+								</div>
+								<div class="form-input mb-3">
+									<input class="form-control form-control-lg " type="text" name="district"placeholder="水庫所在的鎮鄉" required>
+								</div>
+
+							</div>
+							<span>
+								<input type="submit" class="btn btn-outline-info fixed-button" name="data-submit" value="確認">
+							</form>
+							<button type="button" class="btn btn-outline-info fixed-button">取消</button>
+						</span>
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-		</body>
-		</html>
+	</body>
+	</html>
