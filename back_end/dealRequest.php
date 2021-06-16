@@ -9,7 +9,7 @@
         for($i=0 ; $i<count($area_list) ; $i++){
             array_push($GLOBALS['RESPOND']['data'],['area_name'=>$area_list[$i],'reservoir'=>[]]);
 
-            $query = "SELECT date,reservoir.reservoir_id ,reservoir_name,effective_water_storage,effective_capacity 
+            $query = "SELECT date,reservoir.reservoir_id ,reservoir_name,effective_water_storage,effective_capacity,outflow  
             FROM reservoir_water_condition r1,reservoir,city_area 
             WHERE r1.reservoir_id=reservoir.reservoir_id 
             AND reservoir.city=city_area.city 
@@ -26,6 +26,7 @@
                     'reservoir_id'=>$row['reservoir_id'],
                     'effective_water_storage'=>$row['effective_water_storage'],
                     'effective_capacity'=>$row['effective_capacity'],
+                    'outflow'=>$row['outflow'],
                     ]
                 );
             }

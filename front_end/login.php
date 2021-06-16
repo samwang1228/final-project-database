@@ -41,8 +41,9 @@
 										<div class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="cb1">
 											<label class="custom-control-label text-white" for="cb1">Remember me</label>
-										</div>
+										</div>										
 									</div>
+									<a class='text-white' style="margin :0 0 0 16vw">我要註冊</a>
 								</div>
 
 								<div style="color:#cf0000" id="login_error_message">

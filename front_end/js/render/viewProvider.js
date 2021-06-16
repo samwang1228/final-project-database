@@ -68,6 +68,14 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
 		// htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
 		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
         reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
+        reservoir_water_storage = page_menu_list[page][clicked_menu]['reservoir'][i]['effective_water_storage']
+        reservoir_outflow = page_menu_list[page][clicked_menu]['reservoir'][i]['outflow'];
+        
+        //calculate watercut info
+        waterlimit_expect = reservoir_water_storage/reservoir_outflow;
+        watercut_expect = reservoir_water_storage/reservoir_outflow;
+        //是否要考慮一周平均降水
+
         photoURL = 'url("./img/reservoir/'+reservoir_id+'.jpg")';
         htmlCode += "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
         htmlCode += "<div class='container'>";
@@ -76,6 +84,8 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
         htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>";
         htmlCode += '<div">';
         htmlCode += '<canvas id="water'+i+'"></canvas>';
+        htmlCode += '<h2 id="watercut'+i+'">'+ '預測限水日期 : '+waterlimit_expect+'</h2>';
+        htmlCode += '<h2 id="watercut'+i+'">'+ '預測停水日期 : '+watercut_expect+'</h2>';
         htmlCode += "</div>";
         htmlCode += "</div>";
         htmlCode += "</div>";
@@ -147,16 +157,10 @@ function createCircle(clicked_menu){
 // }, 1000);
 
 function setCircleFunction(clicked_menu){
-    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,clicked_menu);
+    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 800,clicked_menu);
 }
 function setRainfall_graph(clicked_menu){
-    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,clicked_menu);
-}
-// loading animation
-if(page==0){
-    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
-}else if(page==1){
-    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,0);
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 800,clicked_menu);
 }
 
 function rainfall_graph(clicked_menu){
@@ -209,3 +213,10 @@ var randomScalingFactor = function() {
     return Math.round(Math.random() * 100) 
 
 }; 
+
+// loading animation
+if(page==0){
+    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
+}else if(page==1){
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,0);
+}

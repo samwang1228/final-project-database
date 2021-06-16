@@ -72,7 +72,13 @@
     transition: 0.5s;
 }
 
+/* #registerText{
+    margin : '0 0 0 16vw';
+} */
+
 .infinity-form button :hover {
     background: linear-gradient(45deg, #709de8, #4285f4);   /*Button color when hover*/
 }
-/* button */
+
+
+
