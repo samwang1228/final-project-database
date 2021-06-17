@@ -85,7 +85,7 @@ include_once('connect.php');
 					city='$city'
 					WHERE
 					city='$city_name'";
-          echo $updatesql."<br />";
+          			echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
 						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
 					}else{
@@ -102,7 +102,7 @@ include_once('connect.php');
 					district='$district'
 					WHERE
 					city='$city_name'";
-          echo $updatesql."<br />";
+          			echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
 						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
 					}else{
@@ -110,6 +110,22 @@ include_once('connect.php');
 					}
 				}
 			}
+
+			if(isset($_POST['delete_button'])){
+				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
+					$reservoir_id=$_POST['reservoir_id'][$i];
+					
+					$updatesql="DELETE 
+					FROM reservoir
+					WHERE reservoir_id='$reservoir_id'";
+					if(mysqli_query($link,$updatesql)){ //sucess
+						echo $updatesql;
+					}else{ //failed						
+						echo $updatesql;
+					}
+				}				 
+			}
+
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
 				$sql="SELECT *

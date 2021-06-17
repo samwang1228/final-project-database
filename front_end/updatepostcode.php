@@ -1,6 +1,7 @@
 <?php
-include_once('connect.php');
+	include_once('connect.php');
   // $sql="SELECT * FROM reservoir";
+
 ?>
 <!doctype html>
 	<html lang="en">
@@ -112,6 +113,24 @@ include_once('connect.php');
 					}
 				}
 			}
+
+			if(isset($_POST['delete_button'])){
+				for( $i=0 ;$i<count($_POST['city']); $i++){
+					$city_name=$_POST['city_name'][$i];
+					$district_name=$_POST['district_name'][$i];
+					
+					$updatesql="DELETE 
+					FROM postcode_area
+					WHERE city='$city_name' and district='$district_name'";					
+
+					if(mysqli_query($link,$updatesql)){ //sucess
+						echo $updatesql;
+					}else{ //failed						
+						echo $updatesql;
+					}
+				}				 
+			}
+
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
 				$sql="SELECT *
@@ -162,7 +181,7 @@ include_once('connect.php');
 													<input type="text" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
 												<td>
-												<button class="btn btn-outline-info" name="delete" style="width:70px">刪除</button>
+												<button class="btn btn-outline-info" type="submit" name="delete_button" style="width:70px">刪除</button>
 												</td>
 											</tr>
 											<?php
@@ -170,7 +189,7 @@ include_once('connect.php');
 										?>
 										<tr>
 											<td colspan="6">
-												<button type="submit"name="list_button" class="btn btn-outline-info ">修改</button><br />
+												<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
 											</td>
 										</tr>
 									</table>

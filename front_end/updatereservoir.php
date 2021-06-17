@@ -84,6 +84,7 @@ include_once('connect.php');
 					$effective_water_storage=$_POST['effective_water_storage'][$i];
 					$reservoir_rainfall=$_POST['reservoir_rainfall'][$i];
 					$date_name=$_POST['date_name'][$i];
+
 					$updatesql="UPDATE reservoir
 					SET
 					reservoir_name='$reservoir_name',
@@ -91,6 +92,7 @@ include_once('connect.php');
 					district='$district'
 					WHERE
 					reservoir_id='$reservoir_id'";
+
 					$updatesql2="UPDATE reservoir_water_condition
 					SET
 					date='$date',
@@ -98,23 +100,40 @@ include_once('connect.php');
 					reservoir_rainfall='$reservoir_rainfall'
 					WHERE
 					reservoir_id='$reservoir_id' AND date='$date_name' " ;
-         //echo $updatesql."<br />";
+         			//echo $updatesql."<br />";
+
 					if(mysqli_query($link,$updatesql)){
 						// die("<script> alert(\"已更新成功\");</script>"); 
-		echo $updatesql;
+						echo $updatesql;
 					}else{
 						// die("<script> alert(\"更新失敗\");</script>");
-		echo $updatesql;
+						echo $updatesql;
 					}
 					if(mysqli_query($link,$updatesql2)){
 						// die("<script> alert(\"已更新成功\");</script>"); 
-		echo $updatesql2;
+						echo $updatesql2;
 					}else{
 						// die("<script> alert(\"更新失敗\");</script>");
-		echo $updatesql2;
+						echo $updatesql2;
 					}
 				}
-				}
+			}
+
+			if(isset($_POST['delete_button'])){
+				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
+					$reservoir_id=$_POST['reservoir_id'][$i];
+
+					$updatesql="DELETE 
+					FROM reservoir
+					WHERE reservoir_id='$reservoir_id'";
+					if(mysqli_query($link,$updatesql)){ //sucess
+						echo $updatesql;
+					}else{ //failed						
+						echo $updatesql;
+					}
+				}				 
+			}
+
 				if(isset($_POST['isearch'])){
 					$search_name=$_POST['isearch'];
 					$sql="SELECT *
@@ -145,6 +164,7 @@ include_once('connect.php');
 						<td>集水區雨量:</td>
 						</tr>
 						<?php
+						$num = 0;
 						do{
 							?>
 							<tr>
@@ -173,15 +193,17 @@ include_once('connect.php');
 							<input type="text" name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 							</td>
 							<td>
-								<button class="btn btn-outline-info" name="delete" style="width:70px">刪除</button>
+								<button class="btn btn-outline-info" style="width:70px" type="submit" name="delete_button">刪除</button>
 							</td>
 							</tr>
 							<?php
+							
+							$num+=1;
 						}while($row=mysqli_fetch_assoc($ro));
 						?>
 						<tr>
 						<td colspan="6">
-						<button type="submit"name="list_button" class="btn btn-outline-info ">修改</button><br />
+						<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
 						</td>
 						</tr>
 						</table>
