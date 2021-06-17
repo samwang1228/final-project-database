@@ -113,24 +113,26 @@
 					}
 				}
 			}
-			if(isset($_POST['city_name'])){
-			for( $i=0 ;$i<count($_POST['city_name']); $i++){
-			if(isset($_POST['delete_button'][$i])){
-					$city_name=$_POST['city_name'][$i];
-					$district_name=$_POST['district_name'][$i];
-					
-					$updatesql="DELETE 
-					FROM postcode_area
-					WHERE city='$city_name' and district='$district_name'";					
 
-					if(mysqli_query($link,$updatesql)){ //sucess
-						echo $updatesql;
-					}else{ //failed						
-						echo $updatesql;
-					}
-				}				 
+			if(isset($_POST['delete_button'])){
+				for( $i=0 ;$i<count($_POST['city_name']); $i++){
+					if(isset($_POST['delete_button'][$i])){
+						$city_name=$_POST['city_name'][$i];
+						$district_name=$_POST['district_name'][$i];
+						
+						$updatesql="DELETE 
+						FROM postcode_area
+						WHERE city='$city_name' and district='$district_name'";					
+
+						if(mysqli_query($link,$updatesql)){ //sucess
+							echo $updatesql;
+						}else{ //failed						
+							echo $updatesql;
+						}
+					}				 
+				}
 			}
-		}
+
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
 				$sql="SELECT *

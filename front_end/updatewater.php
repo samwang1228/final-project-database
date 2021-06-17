@@ -166,6 +166,9 @@ include_once('connect.php');
 												<td>
 													<input type="hidden" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
+												<td>
+												<button class="btn btn-outline-info" type="submit" name="delete_button[]" style="width:70px">刪除</button>
+												</td>
 											</tr>
 											<?php
 										}while($row=mysqli_fetch_assoc($ro));

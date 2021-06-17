@@ -120,7 +120,7 @@ include_once('connect.php');
 
 			if(isset($_POST['delete_button'])){
 				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
-					if(isset($_POST['delete_button'[$i]])){
+					if(isset($_POST['delete_button'][$i])){
 						$reservoir_id=$_POST['reservoir_id'][$i];
 
 						$updatesql="DELETE 
