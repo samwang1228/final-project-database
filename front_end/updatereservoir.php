@@ -74,7 +74,6 @@ include_once('connect.php');
 			</body>
 			<?php
 			if(isset($_POST['list_button'])){
-
 				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
 					$reservoir_name=$_POST['reservoir_name'][$i];
 					$city=$_POST['city'][$i];
@@ -121,15 +120,17 @@ include_once('connect.php');
 
 			if(isset($_POST['delete_button'])){
 				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
-					$reservoir_id=$_POST['reservoir_id'][$i];
+					if(isset($_POST['delete_button'[$i]])){
+						$reservoir_id=$_POST['reservoir_id'][$i];
 
-					$updatesql="DELETE 
-					FROM reservoir
-					WHERE reservoir_id='$reservoir_id'";
-					if(mysqli_query($link,$updatesql)){ //sucess
-						echo $updatesql;
-					}else{ //failed						
-						echo $updatesql;
+						$updatesql="DELETE 
+						FROM reservoir
+						WHERE reservoir_id='$reservoir_id'";
+						if(mysqli_query($link,$updatesql)){ //sucess
+							echo $updatesql;
+						}else{ //failed						
+							echo $updatesql;
+						}
 					}
 				}				 
 			}
@@ -193,7 +194,7 @@ include_once('connect.php');
 							<input type="text" name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 							</td>
 							<td>
-								<button class="btn btn-outline-info" style="width:70px" type="submit" name="delete_button">刪除</button>
+								<button class="btn btn-outline-info" style="width:70px" type="submit" name="delete_button[]">刪除</button>
 							</td>
 							</tr>
 							<?php
