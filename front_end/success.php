@@ -5,6 +5,6 @@
 	<meta charset="utf-8">
 </head>
 <body>
-	<h1>YP is GYP</h1>
+	<h1></h1>
 </body>
 </html>

@@ -113,9 +113,9 @@
 					}
 				}
 			}
-
-			if(isset($_POST['delete_button'])){
-				for( $i=0 ;$i<count($_POST['city']); $i++){
+			if(isset($_POST['city_name'])){
+			for( $i=0 ;$i<count($_POST['city_name']); $i++){
+			if(isset($_POST['delete_button'][$i])){
 					$city_name=$_POST['city_name'][$i];
 					$district_name=$_POST['district_name'][$i];
 					
@@ -130,7 +130,7 @@
 					}
 				}				 
 			}
-
+		}
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
 				$sql="SELECT *
@@ -146,7 +146,6 @@
 					?>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-lg-1"></div>
 							<div class="col-lg-6">
 								<form action="updatepostcode.php" method="post" name="mylist">
 									<table cellspacing=1px>
@@ -181,7 +180,7 @@
 													<input type="text" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
 												<td>
-												<button class="btn btn-outline-info" type="submit" name="delete_button" style="width:70px">刪除</button>
+												<button class="btn btn-outline-info" type="submit" name="delete_button[]" style="width:70px">刪除</button>
 												</td>
 											</tr>
 											<?php
