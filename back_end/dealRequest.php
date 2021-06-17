@@ -88,43 +88,32 @@
                 }
 
             }
-
-            // $query_rainfall = "SELECT city,name,today_rainfall 
-            //           FROM rainfall r1,rain_station 
-            //           WHERE rain_station.number=r1.number 
-            //           AND city='".$city_list[$i]."' 
-            //           AND date=(SELECT MAX(date) FROM rainfall r2 WHERE r1.number=r2.number)
-            // ";
-
-            // [$result_raindall,$num_row_rainfall] = sendServerRequest($query_rainfall);
-            
-            // for($x = 0; $x < $num_row_rainfall; $x++) {
-            //     $row = mysqli_fetch_array($result_raindall);
-            //     for($y = 0;$y < count($GLOBALS['RESPOND']['data'][$i]['rain_station']);$y++){
-                    
-            //     }
-            //     array_push($GLOBALS['RESPOND']['data'][$i]['rain_station'],[
-            //         'rain_station_name'=>$row['name'],
-            //         'today_rainfall'=>$row['today_rainfall'],
-            //         ]
-            //     );
-            // }
         }
         echo json_encode($GLOBALS['RESPOND']);
 
     }
 
     function apiLogin($postUSER,$postPWD){
-        $usename="1234";
-		$password="1234";
-        if(strcmp($postUSER,$usename)!=0 || strcmp($postPWD,$password)){
+        $query_user = "SELECT password FROM user WHERE userid='".$postUSER."'";
+        [$result_user,$num_row_user] = sendServerRequest($query_user);
+        $row_user = mysqli_fetch_array($result_user);
+        if($num_row_user!=1 || strcmp($postPWD,$row_user['password'])){
             // login failed
             $GLOBALS['RESPOND']['sucess'] = 'false';
             echo json_encode($GLOBALS['RESPOND']);
             return;
-		} //失敗時跳轉fail.php
+		}
         
 		//login sucess
         echo json_encode($GLOBALS['RESPOND']);
     }
+
+    function apiRegister($postUSER,$postPWD){
+        $query_user = "INSERT INTO user (userid,password) VALUE ('".$postUSER."','".$postPWD."')";
+        $result = sendServerInsertRequest($query_user);        
+        
+		//register sucess
+        echo json_encode($GLOBALS['RESPOND']);
+    }
+
 ?>

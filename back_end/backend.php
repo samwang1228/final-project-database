@@ -26,6 +26,11 @@ switch($type){
         $time = $data['time'];  //daily weekly monthly
         apiGetRainfallData($time);
         break;
+    case 'register':
+        $postUSER = $data['ID'];
+        $postPWD = $data['password'];
+        apiRegister($postUSER,$postPWD);
+        break;
     case 'login':
         $postUSER = $data['ID'];
         $postPWD = $data['password'];

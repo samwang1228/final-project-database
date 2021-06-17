@@ -2,10 +2,28 @@
     $GLOBALS['mysqli'] = NULL;
 
     function sendServerRequest($query){
-        $result = mysqli_query($GLOBALS['mysqli'], $query) or die(mysqli_error($GLOBALS['mysqli']));
-        // change die() to error function
+        $result = mysqli_query($GLOBALS['mysqli'], $query);
+        if(!$result){
+            //error happened
+            $GLOBALS['RESPOND']['sucess'] = 'false';
+            echo json_encode($GLOBALS['RESPOND']);
+
+            die(mysqli_error($GLOBALS['mysqli']));
+        }
         $num_row = mysqli_num_rows($result);
         return [$result,$num_row];
+    }
+
+    function sendServerInsertRequest($query){
+        $result = mysqli_query($GLOBALS['mysqli'], $query);
+        if(!$result){
+            //error happened
+            $GLOBALS['RESPOND']['sucess'] = 'false';
+            echo json_encode($GLOBALS['RESPOND']);
+
+            die(mysqli_error($GLOBALS['mysqli']));
+        }
+        return $result;
     }
 
     function setMySQL(){        
