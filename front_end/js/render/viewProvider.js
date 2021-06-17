@@ -64,6 +64,8 @@ function updateSideCodeRainfall(htmlCode,page){
 }
 
 function updatePageCodeReservoir(htmlCode,page,clicked_menu){
+    error="<i class='fa fa-exclamation-triangle' aria-hidden='true' ></i>";
+    safe='<i class="fa fa-check" aria-hidden="true" style="color:green"></i>';
     for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
 		// htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
 		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
@@ -75,17 +77,31 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
         waterlimit_expect = reservoir_water_storage/reservoir_outflow;
         watercut_expect = reservoir_water_storage/reservoir_outflow;
         //是否要考慮一周平均降水
-
         photoURL = 'url("./img/reservoir/'+reservoir_id+'.jpg")';
-        htmlCode += "<section class='section' style='background-image:"+photoURL+"' id='slide"+area_list[clicked_menu]+(i)+"'>"
+        htmlCode += "<section class='section' style='background-image:"+photoURL+" ' id='slide"+area_list[clicked_menu]+(i)+"'>"
         htmlCode += "<div class='container'>";
         htmlCode += "<div class='row'>";
         htmlCode += "<div class='col-md-12 upper text-center'>";
         htmlCode += "<h2 class='reservoir-show-name'>"+reservoir_name+"</h2>";
         htmlCode += '<div">';
         htmlCode += '<canvas id="water'+i+'"></canvas>';
-        htmlCode += '<h2 id="watercut'+i+'">'+ '預測限水日期 : '+waterlimit_expect+'</h2>';
-        htmlCode += '<h2 id="watercut'+i+'">'+ '預測停水日期 : '+watercut_expect+'</h2>';
+        htmlCode +="<div class='box-2 '>";
+        if(waterlimit_expect<=7)
+            htmlCode += '<h2 id="watercut'+i+'" style="color:red" >'+ error+'預測限水日期 : '+waterlimit_expect+'</h2>';
+        else if (waterlimit_expect<=40&&waterlimit_expect>7)
+            htmlCode += '<h2 id="watercut'+i+'" style="color:yellow">'+error+'預測限水日期 : '+waterlimit_expect+'</h2>';
+        else
+            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測停水日期 : '+watercut_expect+'</h2>';
+        htmlCode +='</div>';
+        htmlCode +="<div class='box-1'>";
+        if(watercut_expect<=7)
+            htmlCode += '<h2 id="watercut'+i+'" style="color:red">'+error+ '預測停水日期 : '+watercut_expect+'</h2>';
+        else if(watercut_expect>7&& watercut_expect<=40)
+            htmlCode += '<h2 id="watercut'+i+'"style="color:yellow">'+ error+'預測停水日期 : '+watercut_expect+'</h2>';
+        else
+            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測停水日期 : '+watercut_expect+'</h2>';
+        htmlCode +='</div>';
+        htmlCode +='</div>';
         htmlCode += "</div>";
         htmlCode += "</div>";
         htmlCode += "</div>";

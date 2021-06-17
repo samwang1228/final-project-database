@@ -45,7 +45,7 @@ include_once('connect.php');
 						</li>
 						<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
 							<li class="nav-item">
-								<a class="nav-link navbar-fixed text-center" href="insertpostcode.html" style="color: white">insert</a>
+								<a class="nav-link navbar-fixed text-center" href="insertwater.html" style="color: white">insert</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link navbar-fixed" href="./login.php" style="color: white">Log Out</a>
@@ -75,9 +75,8 @@ include_once('connect.php');
 			<?php
 			if(isset($_POST['list_button'])){
 				for($i=0 ;$i<count($_POST['city']) ;$i++){
-					$city_name=$_POST['city_name'][$i];
-					$area_name=$_POST['area_name'][$i];
-					$city=$_POST['city'][$i];
+					$city_name=$_POST['city'][$i];
+					$city=$_POST['check'][$i];
 					// $district=$_POST['district'];
 					$area=$_POST['area'][$i];
 					$updatesql="UPDATE city_area
@@ -85,8 +84,8 @@ include_once('connect.php');
 					area='$area',
 					city='$city'
 					WHERE
-					city='$city_name' and area='$area_name'";
-					echo $updatesql."<br />";
+					city='$city_name'";
+          echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
 						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
 					}else{
@@ -94,8 +93,7 @@ include_once('connect.php');
 					}
 				}
 				for($i=0 ;$i<count($_POST['city']) ;$i++){
-					$district_name=$_POST['district_name'][$i];
-					$city_name=$_POST['city_name'][$i];
+					$city_name=$_POST['city'][$i];
 					$district=$_POST['district'][$i];
 					// $district=$_POST['district'];
 					// $area=$_POST['area'][$i];
@@ -103,8 +101,8 @@ include_once('connect.php');
 					SET
 					district='$district'
 					WHERE
-					city='$city_name' and district='$district_name'";
-					echo $updatesql."<br />";
+					city='$city_name'";
+          echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
 						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
 					}else{
@@ -127,42 +125,30 @@ include_once('connect.php');
 					?>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-lg-1"></div>
+							<div class="col-lg-2"></div>
 							<div class="col-lg-6">
 								<form action="updatepostcode.php" method="post" name="mylist">
 									<table cellspacing=1px>
 										<tr>
-											<td>修改前的縣市名</td>
-											<td>修改後的縣市名</td>
-											<td>修改前的鄉鎮名</td>
-											<td>修改後的鄉鎮名</td>
-											<td>修改前的地區</td>
-											<td>修改後的地區</td>
+											<td>列表</td>
+											<td>縣市名</td>
+											<td>鄉鎮名</td>
 										</tr>
 										<?php
 										do{
 											?>
 											<tr>
 												<td>
-													<input type="text" name="city_name[]" value="<?php echo $row['city']; ?>">
+													<input type="hidden" name="city[]" value="<?php echo $row['city']; ?>">
 												</td>
 												<td>
-													<input type="text" name="city[]" value="<?php echo $row['city']; ?>">
-												</td>
-												<td>
-													<input type="text" name="district_name[]" value="<?php echo $row['district']; ?>">
+													<input type="text" name="check[]" value="<?php echo $row['city']; ?>">
 												</td>
 												<td>
 													<input type="text" name="district[]" value="<?php echo $row['district']; ?>">
 												</td>
 												<td>
-													<input type="text" name="area_name[]" value="<?php echo $row['area']; ?>">
-												</td>
-												<td>
-													<input type="text" name="area[]" value="<?php echo $row['area']; ?>">
-												</td>
-												<td>
-												<button class="btn btn-outline-info" name="delete" style="width:70px">刪除</button>
+													<input type="hidden" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
 											</tr>
 											<?php
