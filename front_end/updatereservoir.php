@@ -197,7 +197,7 @@ include_once('./php/database_record.php');
 							<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 							</td>
 							<td>
-								<button class="btn btn-outline-info" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
+								<button class="btn btn-danger" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
 							</td>
 							</tr>
 							<?php

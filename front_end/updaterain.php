@@ -115,23 +115,24 @@
 			}
 
 			if(isset($_POST['delete_button'])){
-				for( $i=0 ;$i<count($_POST['city']); $i++){
-					if(isset($_POST['delete_button'][$i])){
-						// $city_name=$_POST['city_name'][$i];
-						$number=$_POST['number'][$i];
-						$date_name=$_POST['date_name'][$i];	
-						$updatesql2="DELETE 
-						FROM rainfall
-						WHERE number='$number' and date='$date_name'";	
-						// mysqli_query($link,$updatesql2);
-						if(mysqli_query($link,$updatesql2)){ //sucess
-							echo $updatesql2;
-						}
-						else{ //failed						
-							echo $updatesql2;
-						}
-					}				 
+				// for( $i=0 ;$i<count($_POST['city']); $i++){
+				// 	if(isset($_POST['delete_button'][$i])){
+					// $city_name=$_POST['city_name'][$i];
+				$i = $_POST['delete_button'][0];
+				$number=$_POST['number'][$i];
+				$date_name=$_POST['date_name'][$i];	
+				$updatesql2="DELETE 
+				FROM rainfall
+				WHERE number='$number' and date='$date_name'";	
+				// mysqli_query($link,$updatesql2);
+				if(mysqli_query($link,$updatesql2)){ //sucess
+					echo $updatesql2;
 				}
+				else{ //failed						
+					echo $updatesql2;
+				}
+				// 	}				 
+				// }
 			}
 
 			if(isset($_POST['isearch'])){
@@ -163,6 +164,7 @@
 											<td>累積雨量</td>
 										</tr>
 										<?php
+										$num=0;
 										do{
 											?>
 											<tr>
@@ -191,10 +193,11 @@
 													<input type="text" name="today_rainfall[]"size='13px' value="<?php echo $row['today_rainfall']; ?>">
 												</td>
 												<td>
-												<button class="btn btn-danger" type="submit" name="delete_button[]" style="width:70px">刪除</button>
+												<button class="btn btn-danger" type="submit" name="delete_button[]" style="width:70px" value="<?php echo $num; ?>">刪除</button>
 												</td>
 											</tr>
 											<?php
+											$num+=1;
 										}while($row=mysqli_fetch_assoc($ro));
 										?>
 										<tr>
