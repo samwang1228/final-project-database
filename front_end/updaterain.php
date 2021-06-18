@@ -1,6 +1,5 @@
 <?php
 	include_once('connect.php');
-	include_once('./php/database_record.php');
   // $sql="SELECT * FROM reservoir";
 
 ?>
@@ -39,10 +38,10 @@
 						<li class="nav-item " >
 							<a class="nav-link  navbar-fixed  text-center" href="updatereservoir.php" style="color: white">水庫資料</a>
 						</li>
-						<li class="nav-item manager-color">
+						<li class="nav-item ">
 							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區資料</a>
 						</li>
-						<li class="nav-item ">
+						<li class="nav-item manager-color">
 							<a class="nav-link  navbar-fixed " href="updaterain.php" style="color: white">降雨資料</a>
 						</li>
 						<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
@@ -62,7 +61,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="upper text-center">
-								<form action="updatepostcode.php" method="post">
+								<form action="updaterain.php" method="post">
 									<input name="isearch"  type="text" placeholder="請輸入縣市名字">
 									<button type="submit" class="btn btn-outline-info" >搜尋</button><br />
 								</form>
@@ -72,39 +71,40 @@
 					</div>
 				</div>
 
+
 			</body>
 			<?php
 			if(isset($_POST['list_button'])){
 				for($i=0 ;$i<count($_POST['city']) ;$i++){
-					$city_name=$_POST['city_name'][$i];
-					$area_name=$_POST['area_name'][$i];
-					$city=$_POST['city'][$i];
-					// $district=$_POST['district'];
-					$area=$_POST['area'][$i];
-					$updatesql="UPDATE city_area
+					$name_=$_POST['name_'][$i];
+					$date_name=$_POST['date_name'][$i];
+					$number=$_POST['number'][$i];
+					$name=$_POST['name'][0];
+					$updatesql="UPDATE rain_station
 					SET
-					area='$area',
-					city='$city'
+					rain_station.name='$name'
 					WHERE
-					city='$city_name' and area='$area_name'";
+					number='$number' ";
 					echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
-						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
+						echo "測站名稱".$_POST['name'][$i]." 資料更新成功!.<br />";
 					}else{
-						echo "縣市".$_POST['city'][$i]." 資料更新失敗!.<br />";
+						echo "測站名稱".$_POST['name'][$i]." 資料更新失敗!.<br />";
 					}
 				}
 				for($i=0 ;$i<count($_POST['city']) ;$i++){
-					$district_name=$_POST['district_name'][$i];
-					$city_name=$_POST['city_name'][$i];
-					$district=$_POST['district'][$i];
+					$date_name=$_POST['date_name'][$i];
+					$date=$_POST['date'][$i];
+					$number=$_POST['number'][$i];
 					// $district=$_POST['district'];
 					// $area=$_POST['area'][$i];
-					$updatesql="UPDATE postcode_area
+					$today_rainfall=$_POST['today_rainfall'][$i];
+					$updatesql="UPDATE rainfall 
 					SET
-					district='$district'
+					date='$date',
+					today_rainfall='$today_rainfall'
 					WHERE
-					city='$city_name' and district='$district_name'";
+					number='$number' and date='$date_name'";
 					echo $updatesql."<br />";
 					if(mysqli_query($link,$updatesql)){
 						echo "縣市".$_POST['city'][$i]." 資料更新成功!.<br />";
@@ -115,34 +115,32 @@
 			}
 
 			if(isset($_POST['delete_button'])){
-				// for($i=0 ;$i<count($_POST['city_name']); $i++){
-				// 	if(isset($_POST['delete_button'][$i])){
-					$i = $_POST['delete_button'][0];
-					$city_name=$_POST['city_name'][$i];
-					$district_name=$_POST['district_name'][$i];
-					echo '<Script>console.log("'.$district_name.'")</Script>';
-					
-					$updatesql="DELETE 
-					FROM postcode_area
-					WHERE city='$city_name' and district='$district_name'";					
-
-					if(mysqli_query($link,$updatesql)){ //sucess
-						change_record($link,2,1);
-						echo $updatesql;
-					}else{ //failed						
-						echo $updatesql;
-					}
-				// 	}				 
-				// }
+				for( $i=0 ;$i<count($_POST['city']); $i++){
+					if(isset($_POST['delete_button'][$i])){
+						// $city_name=$_POST['city_name'][$i];
+						$number=$_POST['number'][$i];
+						$date_name=$_POST['date_name'][$i];	
+						$updatesql2="DELETE 
+						FROM rainfall
+						WHERE number='$number' and date='$date_name'";	
+						// mysqli_query($link,$updatesql2);
+						if(mysqli_query($link,$updatesql2)){ //sucess
+							echo $updatesql2;
+						}
+						else{ //failed						
+							echo $updatesql2;
+						}
+					}				 
+				}
 			}
 
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
 				$sql="SELECT *
-				FROM postcode_area NATURAL JOIN city_area
+				FROM rain_station NATURAL JOIN rainfall
 				WHERE
-				postcode_area.city ='$search_name'";
-			  // echo $sql;
+				city ='$search_name'";
+			    echo $sql;
 				$ro=mysqli_query($link,$sql);
 				$row=mysqli_fetch_assoc($ro);
 				$total=mysqli_num_rows($ro);
@@ -151,56 +149,57 @@
 					?>
 					<div class="container-fluid">
 						<div class="row">
-							<div class='col-lg-1'></div>
 							<div class="col-lg-6">
-								<form action="updatepostcode.php" method="post" name="mylist">
+								<form action="updaterain.php" method="post" name="mylist">
 									<table cellspacing=1px>
 										<tr>
-											<td>修改前的縣市名</td>
-											<td>修改後的縣市名</td>
-											<td>修改前的鄉鎮名</td>
-											<td>修改後的鄉鎮名</td>
-											<td>修改前的地區</td>
-											<td>修改後的地區</td>
+											<td>測站ID</td>
+											<td>縣市名</td>
+											<td>鄉鎮名</td>
+											<td>修改前的測站名稱</td>
+											<td>修改後的測站名稱</td>
+											<td>修改前的日期</td>
+											<td>修改後的日期</td>
+											<td>累積雨量</td>
 										</tr>
 										<?php
-										$num=0;
 										do{
 											?>
 											<tr>
 												<td>
-													<input type="text" size='13px' name="city_name[]" value="<?php echo $row['city']; ?>">
+													<input type="text" name="number[]" size='13px' value="<?php echo $row['number']; ?>">
 												</td>
 												<td>
-													<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>">
+													<input type="text" name="city[]" size='13px' value="<?php echo $row['city']; ?>">
 												</td>
 												<td>
-													<input type="text"  size='13px' name="district_name[]" value="<?php echo $row['district']; ?>">
+													<input type="text" name="district[]"size='13px' value="<?php echo $row['district']; ?>">
 												</td>
 												<td>
-													<input type="text"size='13px'  name="district[]" value="<?php echo $row['district']; ?>">
+													<input type="text" name="name_[]"size='13px' value="<?php echo $row['name']; ?>">
 												</td>
 												<td>
-													<input type="text"size='13px' name="area_name[]" value="<?php echo $row['area']; ?>">
+													<input type="text" name="name[]"size='13px' value="<?php echo $row['name']; ?>">
 												</td>
 												<td>
-													<input type="text"size='13px' name="area[]" value="<?php echo $row['area']; ?>">
+													<input type="date" name="date_name[]"size='13px' value="<?php echo $row['date']; ?>">
 												</td>
 												<td>
-<<<<<<< HEAD
-												<button class="btn btn-outline-info" type="submit" name="delete_button[]" value="<?php echo $num; ?>" style="width:70px">刪除</button>
-=======
+													<input type="date" name="date[]"size='13px' value="<?php echo $row['date']; ?>">
+												</td>
+												<td>
+													<input type="text" name="today_rainfall[]"size='13px' value="<?php echo $row['today_rainfall']; ?>">
+												</td>
+												<td>
 												<button class="btn btn-danger" type="submit" name="delete_button[]" style="width:70px">刪除</button>
->>>>>>> f0d7f26... 06/18
 												</td>
-											</tr>											
+											</tr>
 											<?php
-											$num=$num+1;
 										}while($row=mysqli_fetch_assoc($ro));
 										?>
 										<tr>
 											<td colspan="6">
-												<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
+												<button type="submit" name="list_button" class="btn btn-outline-info">修改</button><br />
 											</td>
 										</tr>
 									</table>

@@ -42,7 +42,7 @@ include_once('./php/database_record.php');
 							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區資料</a>
 						</li>
 						<li class="nav-item ">
-							<a class="nav-link  navbar-fixed " href="updatewater.php" style="color: white">用水資料</a>
+							<a class="nav-link  navbar-fixed " href="updaterain.php" style="color: white">降雨資料</a>
 						</li>
 						<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
 							<li class="nav-item">
@@ -173,28 +173,28 @@ include_once('./php/database_record.php');
 							?>
 							<tr>
 							<td>
-							<input type="text"  name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?>">
+							<input type="text" size='13px' name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?>">
 							</td>
 							<td>
-							<input type="text" name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>">
+							<input type="text"size='13px' name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>">
 							</td>
 							<td>
-							<input type="text" name="city[]" value="<?php echo $row['city']; ?>">
+							<input type="text"size='13px' name="city[]" value="<?php echo $row['city']; ?>">
 							</td>
 							<td>
-							<input type="text" name="district[]" value="<?php echo $row['district']; ?>">
+							<input type="text"size='13px' name="district[]" value="<?php echo $row['district']; ?>">
 							</td>
 							<td>
-							<input type="date" name="date_name[]" value="<?php echo $row['date']; ?>">
+							<input type="date"size='13px' name="date_name[]" value="<?php echo $row['date']; ?>">
 							</td> 
 							<td>
-							<input type="date" name="date[]" value="<?php echo $row['date']; ?>">
+							<input type="date"size='13px' name="date[]" value="<?php echo $row['date']; ?>">
 							</td> 
 							<td>
-							<input type="text" name="effective_water_storage[]" value="<?php echo $row['effective_water_storage']; ?>">
+							<input type="text"size='13px' name="effective_water_storage[]" value="<?php echo $row['effective_water_storage']; ?>">
 							</td>
 							<td>
-							<input type="text" name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
+							<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 							</td>
 							<td>
 								<button class="btn btn-outline-info" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
