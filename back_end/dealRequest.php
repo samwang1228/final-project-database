@@ -40,8 +40,9 @@
         switch($time){
             case 'weekly':
                 $date_str = date('Y-m-d', strtotime('-7 days')).' 00:00:00';
+                break;
             default:
-            $date_str = date('Y-m-d').' 00:00:00';
+                $date_str = date('Y-m-d').' 00:00:00';
         }
         
 
@@ -72,12 +73,12 @@
                 $query_rainfall = "SELECT date,today_rainfall 
                                    FROM rainfall,rain_station 
                                    WHERE rain_station.number=rainfall.number 
-                                   AND city='$city_list[$i]' 
+                                   AND city='".$city_list[$i]."' 
                                    AND name='".$row_rain_station['name']."' 
-                                   AND date>='$date_str'
+                                   AND date>='".$date_str."'
                 "; 
                 // AND date>='2021-06-10 00:00:00'
-                [$result_rainfall,$num_row_rainfall] = sendServerRequest($query_rainfall);           
+                [$result_rainfall,$num_row_rainfall] = sendServerRequest($query_rainfall); 
                 for($y = 0; $y < $num_row_rainfall; $y++) {
                     $row_rainfall = mysqli_fetch_array($result_rainfall);
                     array_push($GLOBALS['RESPOND']['data'][$i]['rain_station'][$x]['rainfall'],[

@@ -68,14 +68,23 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
     safe='<i class="fa fa-check" aria-hidden="true" style="color:green"></i>';
     for (let i=0; i<page_menu_list[page][clicked_menu]['reservoir'].length;i++) {
 		// htmlCode += "<section class='slide' id='slide"+area_list[clicked_menu]+(i)+"'>"
-		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id']
-        reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name']        
-        reservoir_water_storage = page_menu_list[page][clicked_menu]['reservoir'][i]['effective_water_storage']
+		reservoir_id = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_id'];
+        reservoir_name = page_menu_list[page][clicked_menu]['reservoir'][i]['reservoir_name'];     
+        reservoir_water_storage = page_menu_list[page][clicked_menu]['reservoir'][i]['effective_water_storage'];
+        reservoir_effective_capacity = page_menu_list[page][clicked_menu]['reservoir'][i]['effective_capacity'];
         reservoir_outflow = page_menu_list[page][clicked_menu]['reservoir'][i]['outflow'];
         
         //calculate watercut info
-        waterlimit_expect = Math.ceil(reservoir_water_storage/reservoir_outflow);
-        watercut_expect = Math.ceil(reservoir_water_storage/reservoir_outflow);
+        if(reservoir_water_storage-reservoir_outflow<0.1*reservoir_effective_capacity){ //明天就沒水
+            waterlimit_expect = 0;
+            watercut_expect = 0;
+        }else if(reservoir_water_storage-reservoir_outflow<0.2*reservoir_effective_capacity){
+            waterlimit_expect = 0;
+            watercut_expect = Math.ceil(reservoir_water_storage-0.1*reservoir_effective_capacity/reservoir_outflow);
+        }else{
+            waterlimit_expect = Math.ceil((reservoir_water_storage-(0.2*reservoir_effective_capacity))/reservoir_outflow);
+            watercut_expect = Math.ceil((reservoir_water_storage-(0.1*reservoir_effective_capacity))/reservoir_outflow);
+        }
         //是否要考慮一周平均降水
         photoURL = 'url("./img/reservoir/'+reservoir_id+'.jpg")';
         htmlCode += "<section class='section' style='background-image:"+photoURL+" ' id='slide"+area_list[clicked_menu]+(i)+"'>"
@@ -91,7 +100,7 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
         else if (waterlimit_expect<=40&&waterlimit_expect>7)
             htmlCode += '<h2 id="watercut'+i+'" style="color:yellow">'+error+'預測限水日期 : '+waterlimit_expect+'</h2>';
         else
-            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測停水日期 : '+watercut_expect+'</h2>';
+            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測限水日期 : '+watercut_expect+'</h2>';
         htmlCode +='</div>';
         htmlCode +="<div class='box-1' style='opacity:0.7'>";
         if(watercut_expect<=7)
@@ -143,7 +152,7 @@ function createCircle(clicked_menu){
         effective_water_storage = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_water_storage']
         effective_capacity = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_capacity']
         // let waterValue = Math.floor(Math.random()*100); //把sql的%數放在這裡
-        let waterValue = effective_water_storage/effective_capacity*100.0;
+        let waterValue = Math.ceil(effective_water_storage/effective_capacity*100.0);
         console.log(effective_capacity);
 
         // console.log(waterValue);
@@ -194,11 +203,11 @@ function rainfall_graph(clicked_menu){
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              labels: day_label,
               datasets: [{
                 label: '降雨量(毫米)',
                 color:'white',
-                data: [randomScalingFactor(),randomScalingFactor(),3, 25, randomScalingFactor(), 28, 31.2, randomScalingFactor()],
+                data: rainfall_label,
                 fill: true,
                 borderColor: 'rgb(75, 192, 192)',
             // backgroundColor:'white',
