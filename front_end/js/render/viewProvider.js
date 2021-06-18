@@ -75,10 +75,11 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
         reservoir_outflow = page_menu_list[page][clicked_menu]['reservoir'][i]['outflow'];
         
         //calculate watercut info
-        if(reservoir_water_storage-reservoir_outflow<0.1*reservoir_effective_capacity){ //明天就沒水
+        if(reservoir_outflow==0){reservoir_outflow=1;}
+        if((reservoir_water_storage-reservoir_outflow)<0.1*reservoir_effective_capacity){ //明天就沒水
             waterlimit_expect = 0;
             watercut_expect = 0;
-        }else if(reservoir_water_storage-reservoir_outflow<0.2*reservoir_effective_capacity){
+        }else if((reservoir_water_storage-reservoir_outflow)<0.2*reservoir_effective_capacity){
             waterlimit_expect = 0;
             watercut_expect = Math.ceil(reservoir_water_storage-0.1*reservoir_effective_capacity/reservoir_outflow);
         }else{
