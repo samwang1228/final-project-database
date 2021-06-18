@@ -1,5 +1,6 @@
 <?php
 	include_once('connect.php');
+	include_once('./php/database_record.php');
   // $sql="SELECT * FROM reservoir";
 
 ?>
@@ -71,7 +72,6 @@
 					</div>
 				</div>
 
-
 			</body>
 			<?php
 			if(isset($_POST['list_button'])){
@@ -115,22 +115,25 @@
 			}
 
 			if(isset($_POST['delete_button'])){
-				for( $i=0 ;$i<count($_POST['city_name']); $i++){
-					if(isset($_POST['delete_button'][$i])){
-						$city_name=$_POST['city_name'][$i];
-						$district_name=$_POST['district_name'][$i];
-						
-						$updatesql="DELETE 
-						FROM postcode_area
-						WHERE city='$city_name' and district='$district_name'";					
+				// for($i=0 ;$i<count($_POST['city_name']); $i++){
+				// 	if(isset($_POST['delete_button'][$i])){
+					$i = $_POST['delete_button'][0];
+					$city_name=$_POST['city_name'][$i];
+					$district_name=$_POST['district_name'][$i];
+					echo '<Script>console.log("'.$district_name.'")</Script>';
+					
+					$updatesql="DELETE 
+					FROM postcode_area
+					WHERE city='$city_name' and district='$district_name'";					
 
-						if(mysqli_query($link,$updatesql)){ //sucess
-							echo $updatesql;
-						}else{ //failed						
-							echo $updatesql;
-						}
-					}				 
-				}
+					if(mysqli_query($link,$updatesql)){ //sucess
+						change_record($link,2,1);
+						echo $updatesql;
+					}else{ //failed						
+						echo $updatesql;
+					}
+				// 	}				 
+				// }
 			}
 
 			if(isset($_POST['isearch'])){
@@ -160,6 +163,7 @@
 											<td>修改後的地區</td>
 										</tr>
 										<?php
+										$num=0;
 										do{
 											?>
 											<tr>
@@ -182,10 +186,11 @@
 													<input type="text" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
 												<td>
-												<button class="btn btn-outline-info" type="submit" name="delete_button[]" style="width:70px">刪除</button>
+												<button class="btn btn-outline-info" type="submit" name="delete_button[]" value="<?php echo $num; ?>" style="width:70px">刪除</button>
 												</td>
-											</tr>
+											</tr>											
 											<?php
+											$num=$num+1;
 										}while($row=mysqli_fetch_assoc($ro));
 										?>
 										<tr>

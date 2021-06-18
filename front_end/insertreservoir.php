@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); 
 require_once 'connect.php';
+include_once('./php/database_record.php');
 ?>
 
 <html>
@@ -59,6 +60,7 @@ require_once 'connect.php';
 	$sql = "INSERT INTO reservoir( reservoir_id, reservoir_name, city,district) VALUES ('$reservoir_id','$reservoir_name','$city','$district')";	
 	$result = mysqli_query($link, $sql);
 	echo $sql;
+	change_record($link,0,1);
 	die("<script> alert(\"已新增成功\"); location.href=\"insertreservoircondition.html\"; </script>"); 
 	?> 
 </body>

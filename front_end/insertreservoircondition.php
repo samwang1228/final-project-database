@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); 
 require_once 'connect.php';
+include_once('./php/database_record.php');
 ?>
 
 <html>
@@ -20,7 +21,8 @@ require_once 'connect.php';
 	echo $city;
 	$sql = "INSERT INTO reservoir_water_condition( reservoir_id, date ,effective_water_storage, effective_capacity,outflow,inflow,reservoir_rainfall) VALUES ('$reservoir_id','$date','$effective_water_storage','$effective_capacity','$outflow','$inflow','reservoir_rainfall')";	
 	$result = mysqli_query($link, $sql);
-	echo $sql;
+	echo $sql;	
+	change_record($link,1,1);
 	die("<script> alert(\"已新增成功\"); location.href=\"insertreservoir.html\"; </script>"); 
 	?> 
 </body>

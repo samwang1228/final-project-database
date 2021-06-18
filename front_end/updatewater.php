@@ -1,5 +1,6 @@
 <?php
-include_once('connect.php');
+	include_once('connect.php');
+	include_once('./php/database_record.php');
   // $sql="SELECT * FROM reservoir";
 ?>
 <!doctype html>
@@ -112,18 +113,20 @@ include_once('connect.php');
 			}
 
 			if(isset($_POST['delete_button'])){
-				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
-					$reservoir_id=$_POST['reservoir_id'][$i];
-					
-					$updatesql="DELETE 
-					FROM reservoir
-					WHERE reservoir_id='$reservoir_id'";
-					if(mysqli_query($link,$updatesql)){ //sucess
-						echo $updatesql;
-					}else{ //failed						
-						echo $updatesql;
-					}
-				}				 
+				// for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
+				$i = $_POST['delete_button'][0];
+				$reservoir_id=$_POST['reservoir_id'][$i];
+				
+				$updatesql="DELETE 
+				FROM reservoir
+				WHERE reservoir_id='$reservoir_id'";
+				if(mysqli_query($link,$updatesql)){ //sucess
+					change_record($link,0,1);
+					echo $updatesql;
+				}else{ //failed						
+					echo $updatesql;
+				}
+				// }				 
 			}
 
 			if(isset($_POST['isearch'])){
@@ -151,6 +154,7 @@ include_once('connect.php');
 											<td>鄉鎮名</td>
 										</tr>
 										<?php
+										$num = 0;
 										do{
 											?>
 											<tr>
@@ -167,10 +171,11 @@ include_once('connect.php');
 													<input type="hidden" name="area[]" value="<?php echo $row['area']; ?>">
 												</td>
 												<td>
-												<button class="btn btn-outline-info" type="submit" name="delete_button[]" style="width:70px">刪除</button>
+												<button class="btn btn-outline-info" type="submit" name="delete_button[]" value="<?php echo $num; ?>" style="width:70px">刪除</button>
 												</td>
 											</tr>
 											<?php
+											$num+=1;
 										}while($row=mysqli_fetch_assoc($ro));
 										?>
 										<tr>

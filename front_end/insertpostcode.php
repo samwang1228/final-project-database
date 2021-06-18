@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); 
 require_once 'connect.php';
+include_once('./php/database_record.php');
 ?>
 
 <html>
@@ -18,11 +19,14 @@ require_once 'connect.php';
 		if (!$insert_city){	
 			echo '縣市插入失敗可能已存在或格式不符合';
 		}
+		// city_area change finish
+		change_record($link,3,1);
 		
 		//插入時可能縣市已經存在，只是加入新的區域
 		$sql_postcode="INSERT INTO postcode_area( city, district) VALUES ('$city','$district')";
 		$insert_postcode=mysqli_query($link,$sql_postcode);
-		if($insert_postcode){
+		if($insert_postcode){			
+			change_record($link,2,1);
 			die("<script> alert(\"已新增成功\"); location.href=\"insertrain.html\"; </script>"); 
 		}
 		else 
