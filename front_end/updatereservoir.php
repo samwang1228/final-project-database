@@ -25,7 +25,7 @@ include_once('./php/database_record.php');
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
 			<div class="container-fluid ">
 
-				<img class="logo" src="logo.png">
+				<!-- <img class="logo" src="logo.png"> -->
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -35,18 +35,21 @@ include_once('./php/database_record.php');
 						<li class="nav-item ">
 							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
 						</li>
-						<li class="nav-item manager-color" >
-							<a class="nav-link  navbar-fixed  text-center" href="updatereservoir.php" style="color: white">水庫資料</a>
+						<li class="nav-item " >
+							<a class="nav-link  navbar-fixed  text-center" href="updatewater.php" style="color: white">用水</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區資料</a>
+						<li class="nav-item manager-color" >
+							<a class="nav-link  navbar-fixed  text-center" href="updatereservoir.php" style="color :white"  >水庫</a>
 						</li>
 						<li class="nav-item ">
-							<a class="nav-link  navbar-fixed " href="updaterain.php" style="color: white">降雨資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區</a>
 						</li>
-						<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
+						<li class="nav-item ">
+							<a class="nav-link  navbar-fixed text-center" href="updaterain.php" style="color: white">降雨</a>
+						</li>
+						<!-- <ul class="navbar-nav nav2">  --> <!--nav2為第二個class-->
 							<li class="nav-item">
-								<a class="nav-link navbar-fixed text-center" href="insertreservoir.php" style="color: white">insert</a>
+								<a class="nav-link navbar-fixed text-center" href="insertpostcode.html" style="color: white">insert</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link navbar-fixed" href="./login.php" style="color: white">Log Out</a>
@@ -138,88 +141,88 @@ include_once('./php/database_record.php');
 				// }				 
 			}
 
-				if(isset($_POST['isearch'])){
-					$search_name=$_POST['isearch'];
-					$sql="SELECT *
-					FROM reservoir NATURAL JOIN reservoir_water_condition
-					WHERE
-					reservoir_name ='$search_name'";
+			if(isset($_POST['isearch'])){
+				$search_name=$_POST['isearch'];
+				$sql="SELECT *
+				FROM reservoir NATURAL JOIN reservoir_water_condition
+				WHERE
+				reservoir_name ='$search_name'";
 			// echo $sql;
-					$ro=mysqli_query($link,$sql);
-					$row=mysqli_fetch_assoc($ro);
-					$total=mysqli_num_rows($ro);
-					if($total!=0){
+				$ro=mysqli_query($link,$sql);
+				$row=mysqli_fetch_assoc($ro);
+				$total=mysqli_num_rows($ro);
+				if($total!=0){
 				// echo "查尋到".$total."筆資料<br />";
-						?>
-						<div class="container-fluid">
+					?>
+					<div class="container-fluid">
 						<div class="row">
-						<!-- <div class="col-lg-1"></div> -->
-						<div class="col-lg-6">
-						<form action="updatereservoir.php" method="post" name="mylist">
-						<table cellspacing=1px>
-						<tr>
-						<td>水庫ID:</td>
-						<td>水庫名:</td>
-						<td>縣市:</td>
-						<td>鄉鎮:</td>
-						<td>修改前日期:</td>
-						<td>修改後日期:</td>
-						<td>有效蓄水量:</td>
-						<td>集水區雨量:</td>
-						</tr>
-						<?php
-						$num = 0;
-						do{
+							<!-- <div class="col-lg-1"></div> -->
+							<div class="col-lg-6">
+								<form action="updatereservoir.php" method="post" name="mylist">
+									<table cellspacing=1px>
+										<tr>
+											<td>水庫ID:</td>
+											<td>水庫名:</td>
+											<td>縣市:</td>
+											<td>鄉鎮:</td>
+											<td>修改前日期:</td>
+											<td>修改後日期:</td>
+											<td>有效蓄水量:</td>
+											<td>集水區雨量:</td>
+										</tr>
+										<?php
+										$num = 0;
+										do{
+											?>
+											<tr>
+												<td>
+													<input type="text" size='13px' name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?>">
+												</td>
+												<td>
+													<input type="text"size='13px' name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>">
+												</td>
+												<td>
+													<input type="text"size='13px' name="city[]" value="<?php echo $row['city']; ?>">
+												</td>
+												<td>
+													<input type="text"size='13px' name="district[]" value="<?php echo $row['district']; ?>">
+												</td>
+												<td>
+													<input type="date"size='13px' name="date_name[]" value="<?php echo $row['date']; ?>">
+												</td> 
+												<td>
+													<input type="date"size='13px' name="date[]" value="<?php echo $row['date']; ?>">
+												</td> 
+												<td>
+													<input type="text"size='13px' name="effective_water_storage[]" value="<?php echo $row['effective_water_storage']; ?>">
+												</td>
+												<td>
+													<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
+												</td>
+												<td>
+													<button class="btn btn-danger" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
+												</td>
+											</tr>
+											<?php
+
+											$num+=1;
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+										<tr>
+											<td colspan="6">
+												<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
+											</td>
+										</tr>
+									</table>
+									<?php
+								}else{
+									echo "查無資料";
+								}
+							}
 							?>
-							<tr>
-							<td>
-							<input type="text" size='13px' name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?>">
-							</td>
-							<td>
-							<input type="text"size='13px' name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>">
-							</td>
-							<td>
-							<input type="text"size='13px' name="city[]" value="<?php echo $row['city']; ?>">
-							</td>
-							<td>
-							<input type="text"size='13px' name="district[]" value="<?php echo $row['district']; ?>">
-							</td>
-							<td>
-							<input type="date"size='13px' name="date_name[]" value="<?php echo $row['date']; ?>">
-							</td> 
-							<td>
-							<input type="date"size='13px' name="date[]" value="<?php echo $row['date']; ?>">
-							</td> 
-							<td>
-							<input type="text"size='13px' name="effective_water_storage[]" value="<?php echo $row['effective_water_storage']; ?>">
-							</td>
-							<td>
-							<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
-							</td>
-							<td>
-								<button class="btn btn-danger" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
-							</td>
-							</tr>
-							<?php
-							
-							$num+=1;
-						}while($row=mysqli_fetch_assoc($ro));
-						?>
-						<tr>
-						<td colspan="6">
-						<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
-						</td>
-						</tr>
-						</table>
-						<?php
-					}else{
-						echo "查無資料";
-					}
-				}
-				?>
-				</form>
+						</form>
+					</div>
 				</div>
-				</div>
-				</div>
-				</div>
-				</section>
+			</div>
+		</div>
+	</section>

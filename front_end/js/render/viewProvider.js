@@ -150,12 +150,12 @@ function createCircle(clicked_menu){
         // var temp = '#water'+clicked_menu,i;
         // console.log(temp);
 
-        effective_water_storage = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_water_storage']
-        effective_capacity = page_menu_list[page][clicked_menu]['reservoir'][j]['effective_capacity']
+        effective_water_storage =Math.round(page_menu_list[page][clicked_menu]['reservoir'][j]['effective_water_storage']);
+        effective_capacity = Math.round(page_menu_list[page][clicked_menu]['reservoir'][j]['effective_capacity'])
         // let waterValue = Math.floor(Math.random()*100); //把sql的%數放在這裡
         let waterValue = Math.ceil(effective_water_storage/effective_capacity*100.0);
         console.log(effective_capacity);
-
+        console.log(waterValue);
         // console.log(waterValue);
         if(waterValue<=20){
          waterColor='rgb(255,99,71)';
@@ -196,10 +196,11 @@ function rainfall_graph(clicked_menu){
         for(let i=0;i<page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'].length;i++){ //each day
             day_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['date']);
             rainfall_label.push(page_menu_list[page][clicked_menu]['rain_station'][x]['rainfall'][i]['today_rainfall']);
+            // console.log(day_label);
         }
         console.log(day_label);
         console.log(rainfall_label);
-        console.log(x);
+        // console.log(x);
         var ctx = document.getElementById('myChart'+x);
         var myChart = new Chart(ctx, {
             type: 'line',

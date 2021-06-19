@@ -25,7 +25,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
 			<div class="container-fluid ">
 
-				<img class="logo" src="logo.png">
+				<!-- <img class="logo" src="logo.png"> -->
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -36,15 +36,18 @@
 							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
 						</li>
 						<li class="nav-item " >
-							<a class="nav-link  navbar-fixed  text-center" href="updatereservoir.php" style="color: white">水庫資料</a>
+							<a class="nav-link  navbar-fixed  text-center" href="updatewater.php" style="color: white">用水</a>
+						</li>
+						<li class="nav-item " >
+							<a class="nav-link  navbar-fixed  text-center" href="updatereservoir.php" style="color :white"  >水庫</a>
 						</li>
 						<li class="nav-item ">
-							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="updatepostcode.php" style="color: white">地區</a>
 						</li>
 						<li class="nav-item manager-color">
-							<a class="nav-link  navbar-fixed " href="updaterain.php" style="color: white">降雨資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="updaterain.php" style="color: white">降雨</a>
 						</li>
-						<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
+						<!-- <ul class="navbar-nav nav2">  --> <!--nav2為第二個class-->
 							<li class="nav-item">
 								<a class="nav-link navbar-fixed text-center" href="insertpostcode.html" style="color: white">insert</a>
 							</li>

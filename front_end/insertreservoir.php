@@ -28,6 +28,7 @@ include_once('./php/database_record.php');
     }
     if ((($file_type == "image/gif")
     	|| ($file_type == "image/jpeg")
+    	|| ($file_type == "image/png")
     	|| ($file_type == "image/jpg"))
     	&& ($file_size < 2000000)) {
     	if ($_FILES["file"]["error"] > 0) {
