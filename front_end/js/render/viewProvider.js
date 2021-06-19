@@ -101,7 +101,7 @@ function updatePageCodeReservoir(htmlCode,page,clicked_menu){
         else if (waterlimit_expect<=40&&waterlimit_expect>7)
             htmlCode += '<h2 id="watercut'+i+'" style="color:yellow">'+error+'預測限水日期 : '+waterlimit_expect+'</h2>';
         else
-            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測限水日期 : '+watercut_expect+'</h2>';
+            htmlCode += '<h2 id="watercut'+i+'"style="color:white">'+ safe+'預測限水日期 : '+waterlimit_expect+'</h2>';
         htmlCode +='</div>';
         htmlCode +="<div class='box-1' style='opacity:0.7'>";
         if(watercut_expect<=7)
