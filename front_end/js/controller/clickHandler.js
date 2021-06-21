@@ -56,7 +56,7 @@ function onRegisterButtonClick(){
 			console.log(jsonResult);
 			let result = JSON.parse(jsonResult);
 			if(result['sucess']==='false'){ // register failed	
-				$('#login_error_message').html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 帳號或密碼錯誤請再輸入一次');
+				$('#login_error_message').html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 帳號或密碼重複請再輸入一次');
 				return;
 			}
 			// register success

@@ -19,9 +19,9 @@
         if(!$result){
             //error happened
             $GLOBALS['RESPOND']['sucess'] = 'false';
+            $GLOBALS['RESPOND']['error_msg'] = mysqli_error($GLOBALS['mysqli']);
             echo json_encode($GLOBALS['RESPOND']);
-
-            die(mysqli_error($GLOBALS['mysqli']));
+            die();
         }
         return $result;
     }
