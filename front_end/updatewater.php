@@ -64,8 +64,44 @@ include_once('./php/database_record.php');
 					<div class="row">
 						<div class="col-md-12">
 							<div class="upper text-center">
+								<div class="reservoir-show-name">工業用水</div>
 								<form action="updatewater.php" method="post">
-									<input name="indusearch" type="text" placeholder="工業用水縣市">
+								<select name="indusearch" >
+										<?php
+										$sql="SELECT distinct(city) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['city']; ?>"><?php echo $row['city'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
+									<select name="indusearch_year" >
+										<?php
+										$sql="SELECT distinct(year) FROM industrial_water ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
 									<button type="submit" class="btn btn-outline-info" >搜尋</button><br />
 								</form>
 							</div>
@@ -75,67 +111,98 @@ include_once('./php/database_record.php');
 				</div>
 							<div class="text-center">
 								<form action="updatewater.php" method="post">
-									<input name="argsearch" type="text" placeholder="農業用水區域">
+									<div >農業用水</div>
+								<form action="updatewater.php" method="post">
+								<select name="argsearch" >
+										<?php
+										$sql="SELECT distinct(area) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['area']; ?>"><?php echo $row['area'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
+									<select name="argsearch_year" >
+										<?php
+										$sql="SELECT distinct(year) FROM agriculture_water ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
 									<button type="submit" class="btn btn-outline-info" >搜尋</button><br />
 								</form>
 							</div>
 							<div class="text-center">
 								<form action="updatewater.php" method="post">
-									<input name="livesearch" type="text" placeholder="生活用水縣市">
+									<div >民生用水</div>
+								<form action="updatewater.php" method="post">
+								<select name="livesearch" >
+										<?php
+										$sql="SELECT distinct(city) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['city']; ?>"><?php echo $row['city'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
+									<select name="livesearch_year" >
+										<?php
+										$sql="SELECT distinct(year) FROM living_water ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+											?>
+											<option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+											<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+
+									</select>
 									<button type="submit" class="btn btn-outline-info" >搜尋</button><br />
 								</form>
 							</div>
 			</body>
 			<?php
-			if(isset($_POST['list_button'])){
-				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
-					$reservoir_name=$_POST['reservoir_name'][$i];
-					$city=$_POST['city'][$i];
-					$district=$_POST['district'][$i];
-					$reservoir_id=$_POST['reservoir_id'][$i];
-					$date=$_POST['date'][$i];
-					$effective_water_storage=$_POST['effective_water_storage'][$i];
-					$reservoir_rainfall=$_POST['reservoir_rainfall'][$i];
-					$date_name=$_POST['date_name'][$i];
-
-					$updatesql="UPDATE reservoir
-					SET
-					reservoir_name='$reservoir_name',
-					city='$city',
-					district='$district'
-					WHERE
-					reservoir_id='$reservoir_id'";
-
-					$updatesql2="UPDATE reservoir_water_condition
-					SET
-					date='$date',
-					effective_water_storage='$effective_water_storage',
-					reservoir_rainfall='$reservoir_rainfall'
-					WHERE
-					reservoir_id='$reservoir_id' AND date='$date_name' " ;
-         			//echo $updatesql."<br />";
-
-					if(mysqli_query($link,$updatesql)){
-						// die("<script> alert(\"已更新成功\");</script>"); 
-						echo $updatesql;
-					}else{
-						// die("<script> alert(\"更新失敗\");</script>");
-						echo $updatesql;
-					}
-					if(mysqli_query($link,$updatesql2)){
-						// die("<script> alert(\"已更新成功\");</script>"); 
-						echo $updatesql2;
-					}else{
-						// die("<script> alert(\"更新失敗\");</script>");
-						echo $updatesql2;
-					}
-				}
-			}
-
+		
 			if(isset($_POST['indu_delete_button'])){
-				for( $i=0 ;$i<count($_POST['city']); $i++){
-					if(isset($_POST['indu_delete_button'][$i])){
+				// for( $i=0 ;$i<count($_POST['city']); $i++){
+					// if(isset($_POST['indu_delete_button'][$i])){
 				// $i = $_POST['indu_delete_button'][0];
+				$i=$_POST['indu_delete_button'][0];
 				$city=$_POST['city'][$i];
 				$year=$_POST['year'][$i];
 				$industrial_project=$_POST['industrial_project'][$i];
@@ -144,19 +211,43 @@ include_once('./php/database_record.php');
 				FROM industrial_water
 				WHERE city='$city' and year='$year' and industrial_project='$industrial_project'";
 				if(mysqli_query($link,$updatesql)){ //sucess
-					change_record($link,0,1);
-					echo $updatesql;
+					change_record($link,0,1,'Delete');
+					// echo $updatesql;
 				}else{ //failed						
-					echo $updatesql;
+					// echo $updatesql;
 				}
-					}
-				}				 
+					// }
+				// }				 
 			}
-
-			if(isset($_POST['argi_delete_button'])){
-				for( $i=0 ;$i<count($_POST['area']); $i++){
-					if(isset($_POST['argi_delete_button'][$i])){
+			if(isset($_POST['indu_update_button'])){
+				// for( $i=0 ;$i<count($_POST['city']); $i++){
+					// if(isset($_POST['indu_delete_button'][$i])){
 				// $i = $_POST['indu_delete_button'][0];
+				$i=$_POST['indu_update_button'][0];
+				$city=$_POST['city'][$i];
+				$year=$_POST['year'][$i];
+				$industrial_project=$_POST['industrial_project'][$i];
+				$industrial_project_area=$_POST['industrial_project_area'][$i];
+				$industrial_project_used=$_POST['industrial_project_used'][$i];
+				// $industrial_project_area=$_POST['industrial_project_area'][$i]
+				$updatesql="UPDATE industrial_water
+				SET
+				industrial_project_area='$industrial_project_area',
+				industrial_project_used='$industrial_project_used'
+				WHERE city='$city' and year='$year' and industrial_project='$industrial_project'";
+				if(mysqli_query($link,$updatesql)){ //sucess
+					change_record($link,8,$i,'Update');
+					// echo $updatesql;
+				}else{ //failed						
+					// echo $updatesql;
+				}
+					// }
+				// }				 
+			}
+			if(isset($_POST['argi_delete_button'])){
+				// for( $i=0 ;$i<count($_POST['area']); $i++){
+					// if(isset($_POST['argi_delete_button'][$i])){
+				$i = $_POST['argi_delete_button'][0];
 				$area=$_POST['area'][$i];
 				$year=$_POST['year'][$i];
 				$irrigation=$_POST['irrigation'][$i];
@@ -167,18 +258,44 @@ include_once('./php/database_record.php');
 				FROM agriculture_wateri
 				WHERE area='$area' and year='$year'";
 				if(mysqli_query($link,$updatesql)){ //sucess
-					change_record($link,0,1);
+					change_record($link,6,$i,'Delete');
+					// echo $updatesql;
+				}else{ //failed						
+					// echo $updatesql;
+				}
+					// }
+				// }				 
+			}
+				if(isset($_POST['argi_update_button'])){
+				// for( $i=0 ;$i<count($_POST['city']); $i++){
+					// if(isset($_POST['indu_delete_button'][$i])){
+				// $i = $_POST['indu_delete_button'][0];
+				$i=$_POST['argi_update_button'][0];
+				$area=$_POST['area'][$i];
+				$year=$_POST['year'][$i];
+				$irrigation=$_POST['irrigation'][$i];
+				$aquaculture=$_POST['aquaculture'][$i];
+				$livestock=$_POST['livestock'][$i];
+				// $industrial_project_area=$_POST['industrial_project_area'][$i]
+				$updatesql="UPDATE agriculture_water
+				SET
+				irrigation='$irrigation',
+				aquaculture='$aquaculture',
+				livestock='$livestock'
+				WHERE area='$area' and year='$year'";
+				if(mysqli_query($link,$updatesql)){ //sucess
+					change_record($link,6,$i,'Update');
 					echo $updatesql;
 				}else{ //failed						
 					echo $updatesql;
 				}
-					}
-				}				 
+					// }
+				// }				 
 			}
 			if(isset($_POST['live_delete_button'])){
-				for( $i=0 ;$i<count($_POST['city']); $i++){
-					if(isset($_POST['live_delete_button'][$i])){
-				// $i = $_POST['indu_delete_button'][0];
+				// for( $i=0 ;$i<count($_POST['city']); $i++){
+					// if(isset($_POST['live_delete_button'][$i])){
+				$i = $_POST['indu_delete_button'][0];
 				$city=$_POST['city'][$i];
 				$year=$_POST['year'][$i];
 				$tapwater_population=$_POST['tapwater_population'][$i];
@@ -190,20 +307,46 @@ include_once('./php/database_record.php');
 				FROM living_water
 				WHERE city='$city' and year='$year'";
 				if(mysqli_query($link,$updatesql)){ //sucess
-					change_record($link,0,1);
+					change_record($link,0,7,'Delete');
 					echo $updatesql;
 				}else{ //failed						
 					echo $updatesql;
 				}
-					}
-				}				 
+					// }
+				// }				 
 			}
-				if(isset($_POST['indusearch'])){
+			if(isset($_POST['live_update_button'])){
+				$i=$_POST['live_update_button'][0];
+				$city=$_POST['city'][$i];
+				$year=$_POST['year'][$i];
+				$tapwater_population=$_POST['tapwater_population'][$i];
+				$tapwater_used=$_POST['tapwater_used'][$i];
+				$selftake_population=$_POST['selftake_population'][$i];
+				$selftake_used=$_POST['selftake_used'][$i];
+				// $industrial_project_area=$_POST['industrial_project_area'][$i]
+				$updatesql="UPDATE living_water
+				SET
+				tapwater_population='$tapwater_population',
+				tapwater_used='$tapwater_used',
+				selftake_population='$selftake_population',
+				selftake_used='$selftake_used'
+				WHERE city='$city' and year='$year'";
+				if(mysqli_query($link,$updatesql)){ //sucess
+					change_record($link,7,$i,'Update');
+					echo $updatesql;
+				}else{ //failed						
+					echo $updatesql;
+				}
+					// }
+				// }				 
+			}
+				if(isset($_POST['indusearch_year'])){
 					$search_name=$_POST['indusearch'];
+					$year=$_POST['indusearch_year'];
 					$sql="SELECT *
 					FROM industrial_water
 					WHERE
-					city ='$search_name'";
+					city ='$search_name' AND year='$year'";
 			// echo $sql;
 					$ro=mysqli_query($link,$sql);
 					$row=mysqli_fetch_assoc($ro);
@@ -221,8 +364,8 @@ include_once('./php/database_record.php');
 						<td>縣市</td>
 						<td>年份:</td>
 						<td>工業項目:</td>
-						<td>工業項目面積:</td>
-						<td>工業項目用水</td>
+						<td>工業項目面積(可修改):</td>
+						<td>工業項目用水(可修改)</td>
 						</tr>
 						<?php
 						$num = 0;
@@ -230,22 +373,25 @@ include_once('./php/database_record.php');
 							?>
 							<tr>
 							<td>
-							<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>">
+							<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>" readonly='readonly'>
 							</td>
 							<td>
-							<input type="text"size='13px' name="year[]" value="<?php echo $row['year']; ?>">
+							<input type="text"size='13px' name="year[]" value="<?php echo $row['year']; ?>" readonly='readonly'>
 							</td>
 							<td>
-							<input type="text"size='13px' name="industrial_project[]" value="<?php echo $row['industrial_project']; ?>">
+							<input type="text"size='13px' name="industrial_project[]" value="<?php echo $row['industrial_project']; ?>"readonly='readonly'>
 							</td>
 							<td>
 							<input type="text"size='13px' name="industrial_project_area[]" value="<?php echo $row['industrial_project_area']; ?>">
 							</td>
 							<td>
-							<input type="text"size='13px' name="industrial_project_used[]" value="<?php echo $row['industrial_project_area']; ?>">
+							<input type="text"size='13px' name="industrial_project_used[]" value="<?php echo $row['industrial_project_used']; ?>">
 							</td> 
 							<td>
 								<button class="btn btn-danger" style="width:70px" type="submit" name="indu_delete_button[]" value="<?php echo $num; ?>">刪除</button>
+							</td>
+							<td>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="indu_update_button[]" value="<?php echo $num; ?>">修改</button>
 							</td>
 							</tr>
 							<?php
@@ -253,23 +399,19 @@ include_once('./php/database_record.php');
 							$num+=1;
 						}while($row=mysqli_fetch_assoc($ro));
 						?>
-						<tr>
-						<td colspan="6">
-						<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
-						</td>
-						</tr>
 						</table>
 						<?php
 					}else{
 						echo "查無資料";
 					}
 				}
-				if(isset($_POST['argsearch'])){
+				if(isset($_POST['argsearch_year'])){
 					$search_name=$_POST['argsearch'];
+					$year=$_POST['argsearch_year'];
 					$sql="SELECT *
 					FROM agriculture_water
 					WHERE
-					area ='$search_name'";
+					area ='$search_name' AND year='$year'";
 			// echo $sql;
 					$ro=mysqli_query($link,$sql);
 					$row=mysqli_fetch_assoc($ro);
@@ -296,10 +438,10 @@ include_once('./php/database_record.php');
 							?>
 							<tr>
 							<td>
-							<input type="text" size='13px' name="area[]" value="<?php echo $row['area']; ?>">
+							<input type="text" size='13px' name="area[]" value="<?php echo $row['area']; ?>" readonly='readonly'>
 							</td>
 							<td>
-							<input type="text"size='13px' name="year[]" value="<?php echo $row['year']; ?>">
+							<input type="text"size='13px' name="year[]" value="<?php echo $row['year']; ?>" readonly='readonly'>
 							</td>
 							<td>
 							<input type="text"size='13px' name="irrigation[]" value="<?php echo $row['irrigation']; ?>">
@@ -313,29 +455,28 @@ include_once('./php/database_record.php');
 							<td>
 								<button class="btn btn-danger" style="width:70px" type="submit" name="argi_delete_button[]" value="<?php echo $num; ?>">刪除</button>
 							</td>
+							<td>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="argi_update_button[]" value="<?php echo $num; ?>">修改</button>
+							</td>
 							</tr>
 							<?php
 							
 							$num+=1;
 						}while($row=mysqli_fetch_assoc($ro));
 						?>
-						<tr>
-						<td colspan="6">
-						<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
-						</td>
-						</tr>
 						</table>
 						<?php
 					}else{
 						echo "查無資料";
 					}
 				}
-				if(isset($_POST['livesearch'])){
+				if(isset($_POST['livesearch_year'])){
 					$search_name=$_POST['livesearch'];
+					$year=$_POST['livesearch_year'];
 					$sql="SELECT *
 					FROM living_water
 					WHERE
-					city ='$search_name'";
+					city ='$search_name' AND year='$year'";
 			// echo $sql;
 					$ro=mysqli_query($link,$sql);
 					$row=mysqli_fetch_assoc($ro);
@@ -352,10 +493,10 @@ include_once('./php/database_record.php');
 						<tr>
 						<td>縣市:</td>
 						<td>年份:</td>
-						<td>自來水供應量供水人口</td>
-						<td>自來水供應量用水量</td>
-						<td>自來水取水量供水人口</td>
-						<td>自來水取水量用水量</td>
+						<td>自來水供應量供水人口(可修改)</td>
+						<td>自來水供應量用水量(可修改)</td>
+						<td>自來水取水量供水人口(可修改)</td>
+						<td>自來水取水量用水量(可修改)</td>
 						</tr>
 						<?php
 						$num = 0;
@@ -363,16 +504,16 @@ include_once('./php/database_record.php');
 							?>
 							<tr>
 							<td>
-							<input type="text" size='16px' name="city[]" value="<?php echo $row['city']; ?>">
+							<input type="text" size='16px' name="city[]" value="<?php echo $row['city']; ?>" readonly='readonly'>
 							</td>
 							<td>
-							<input type="text"size='16px' name="year[]" value="<?php echo $row['year']; ?>">
+							<input type="text"size='16px' name="year[]" value="<?php echo $row['year']; ?>"readonly='readonly'>
 							</td>
 							<td>
-							<input type="text"size='16px' name="tapwater_population[]" value="<?php echo $row['tapwater_population']; ?>">
+							<input type="text"size='16px' name="tapwater_population[]" value="<?php echo $row['tapwater_population']; ?>" >
 							</td>
 							<td>
-							<input type="text"size='16px' name="tapwater_used[]" value="<?php echo $row['tapwater_used']; ?>">
+							<input type="text"size='16px' name="tapwater_used[]" value="<?php echo $row['tapwater_used']; ?>" >
 							</td>
 							<td>
 							<input type="text"size='16px' name="selftake_population[]" value="<?php echo $row['selftake_population']; ?>">
@@ -383,17 +524,15 @@ include_once('./php/database_record.php');
 							<td>
 								<button class="btn btn-danger" style="width:70px" type="submit" name="live_delete_button[]" value="<?php echo $num; ?>">刪除</button>
 							</td>
+							<td>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="live_update_button[]" value="<?php echo $num; ?>">修改</button>
+							</td>
 							</tr>
 							<?php
 							
 							$num+=1;
 						}while($row=mysqli_fetch_assoc($ro));
 						?>
-						<tr>
-						<td colspan="6">
-						<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
-						</td>
-						</tr>
 						</table>
 						<?php
 					}else{

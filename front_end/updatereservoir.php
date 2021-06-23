@@ -65,8 +65,25 @@ include_once('./php/database_record.php');
 						<div class="col-md-12">
 							<div class="upper text-center">
 								<form action="updatereservoir.php" method="post">
-									<input name="isearch" type="text" placeholder="請輸入水庫名字">
-									<button type="submit" class="btn btn-outline-info" >搜尋</button><br />
+									<select name="isearch" >
+										<?php
+										$sql="SELECT reservoir_name FROM reservoir ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
+										// while($data=mysqli_fetch_assoc($result)){
+										do
+										{
+										?>
+										      <option value="<?php echo $row['reservoir_name']; ?>"><?php echo $row['reservoir_name'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+									
+									</select>
+										<button type="data-submit" class="btn btn-outline-info" name='data-submit' >搜尋</button><br />
 								</form>
 							</div>
 
@@ -77,69 +94,56 @@ include_once('./php/database_record.php');
 
 			</body>
 			<?php
-			if(isset($_POST['list_button'])){
+			if(isset($_POST['reservoir_id'])){
 				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
-					$reservoir_name=$_POST['reservoir_name'][$i];
-					$city=$_POST['city'][$i];
-					$district=$_POST['district'][$i];
+					if(isset($_POST[$i])){
 					$reservoir_id=$_POST['reservoir_id'][$i];
-					$date=$_POST['date'][$i];
 					$effective_water_storage=$_POST['effective_water_storage'][$i];
 					$reservoir_rainfall=$_POST['reservoir_rainfall'][$i];
 					$date_name=$_POST['date_name'][$i];
-
-					$updatesql="UPDATE reservoir
+					$updatesql="UPDATE reservoir_water_condition NATURAL JOIN reservoir
 					SET
-					reservoir_name='$reservoir_name',
-					city='$city',
-					district='$district'
+					reservoir_water_condition.effective_water_storage='$effective_water_storage',
+					reservoir_water_condition.reservoir_rainfall='$reservoir_rainfall'
 					WHERE
-					reservoir_id='$reservoir_id'";
-
-					$updatesql2="UPDATE reservoir_water_condition
-					SET
-					date='$date',
-					effective_water_storage='$effective_water_storage',
-					reservoir_rainfall='$reservoir_rainfall'
-					WHERE
-					reservoir_id='$reservoir_id' AND date='$date_name' " ;
-         			//echo $updatesql."<br />";
+					reservoir_water_condition.reservoir_id='$reservoir_id' AND reservoir_water_condition.date='$date_name' " ;
+         			// echo $updatesql."<br />";
 
 					if(mysqli_query($link,$updatesql)){
-						// die("<script> alert(\"已更新成功\");</script>"); 
-						echo $updatesql;
+						change_record($link,0,$i,'Update');
+						die("<script> alert(\"已更新成功\");</script>"); 
+						// echo $updatesql;
+						
 					}else{
-						// die("<script> alert(\"更新失敗\");</script>");
-						echo $updatesql;
-					}
-					if(mysqli_query($link,$updatesql2)){
-						// die("<script> alert(\"已更新成功\");</script>"); 
-						echo $updatesql2;
-					}else{
-						// die("<script> alert(\"更新失敗\");</script>");
-						echo $updatesql2;
+						die("<script> alert(\"更新失敗\");</script>");
+						// echo $updatesql;
 					}
 				}
 			}
+		}
 
-			if(isset($_POST['delete_button'])){
+			if(isset($_POST['reservoir_id'])){
+				for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
 				// for( $i=0 ;$i<count($_POST['reservoir_id']); $i++){
 				// 	if(isset($_POST['delete_button'][$i])){
-				$i = $_POST['delete_button'][0];
+				if(isset($_POST['d'.$i])){
 				$reservoir_id=$_POST['reservoir_id'][$i];
-
+				$date=$_POST['date_name'][$i];
 				$updatesql="DELETE 
-				FROM reservoir
-				WHERE reservoir_id='$reservoir_id'";
+				FROM  reservoir_water_condition
+				WHERE reservoir_id='$reservoir_id' AND date='$date'";
 				if(mysqli_query($link,$updatesql)){ //sucess
-					change_record($link,0,1);
-					echo $updatesql;
-				}else{ //failed						
-					echo $updatesql;
+					change_record($link,0,$i,'Delete');
+					die("<script> alert(\"已刪除成功\");</script>"); 
+					// echo $updatesql;
+				}else{ //failed
+				die("<script> alert(\"刪除失敗\");</script>"); 						
+					// echo $updatesql;
 				}
-				// 	}
-				// }				 
-			}
+
+					}
+				}	
+				}			 
 
 			if(isset($_POST['isearch'])){
 				$search_name=$_POST['isearch'];
@@ -165,33 +169,31 @@ include_once('./php/database_record.php');
 											<td>水庫名:</td>
 											<td>縣市:</td>
 											<td>鄉鎮:</td>
-											<td>修改前日期:</td>
-											<td>修改後日期:</td>
-											<td>有效蓄水量:</td>
-											<td>集水區雨量:</td>
+											<td>日期:</td>
+											<td>有效蓄水量(可修改):</td>
+											<td>集水區雨量(可修改):</td>
 										</tr>
 										<?php
 										$num = 0;
+										$temp=0;
 										do{
 											?>
+
 											<tr>
 												<td>
-													<input type="text" size='13px' name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?>">
+													<input type="text" size='13px' name="reservoir_id[]" value="<?php echo $row['reservoir_id']; ?> "readonly="readonly">
 												</td>
 												<td>
-													<input type="text"size='13px' name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>">
+													<input type="text"size='13px' name="reservoir_name[]" value="<?php echo $row['reservoir_name']; ?>"readonly="readonly">
 												</td>
 												<td>
-													<input type="text"size='13px' name="city[]" value="<?php echo $row['city']; ?>">
+													<input type="text"size='13px' name="city[]" value="<?php echo $row['city']; ?>"readonly="readonly">
 												</td>
 												<td>
-													<input type="text"size='13px' name="district[]" value="<?php echo $row['district']; ?>">
+													<input type="text"size='13px' name="district[]" value="<?php echo $row['district']; ?>"readonly="readonly">
 												</td>
 												<td>
-													<input type="date"size='13px' name="date_name[]" value="<?php echo $row['date']; ?>">
-												</td> 
-												<td>
-													<input type="date"size='13px' name="date[]" value="<?php echo $row['date']; ?>">
+													<input type="date"size='13px' name="date_name[]" value="<?php echo $row['date']; ?>"readonly="readonly">
 												</td> 
 												<td>
 													<input type="text"size='13px' name="effective_water_storage[]" value="<?php echo $row['effective_water_storage']; ?>">
@@ -200,23 +202,22 @@ include_once('./php/database_record.php');
 													<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 												</td>
 												<td>
-													<button class="btn btn-danger" style="width:70px" type="submit" name="delete_button[]" value="<?php echo $num; ?>">刪除</button>
+													<button class="btn btn-danger" style="width:70px" type="submit" name="<?php echo 'd'.$temp ?>"value="<?php echo $num; ?>">刪除</button>
 												</td>
+												<td >
+												<button type="submit" name="<?php echo $temp?>" style="width:70px" class="btn btn-primary ">修改</button><br />
+											</td>
 											</tr>
 											<?php
-
+											$temp+=1;
 											$num+=1;
 										}while($row=mysqli_fetch_assoc($ro));
 										?>
-										<tr>
-											<td colspan="6">
-												<button type="submit" name="list_button" class="btn btn-outline-info ">修改</button><br />
-											</td>
-										</tr>
 									</table>
 									<?php
 								}else{
 									echo "查無資料";
+									echo $_POST['isearch'];
 								}
 							}
 							?>

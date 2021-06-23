@@ -1,6 +1,6 @@
 <?php
-		$SERVER_ADDRESS = 'ec2-3-92-133-135.compute-1.amazonaws.com';
-		// $SERVER_ADDRESS = 'localhost';
+		// $SERVER_ADDRESS = 'ec2-3-92-133-135.compute-1.amazonaws.com';
+		$SERVER_ADDRESS = 'localhost';
 		$link = new mysqli($SERVER_ADDRESS, 'databaseaws', 'databaseaws', 'reservoir_project');
 		if ($link)
 		{

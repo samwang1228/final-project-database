@@ -1,4 +1,8 @@
 <!doctype html>
+<?php session_start();
+include_once('connect.php');
+include_once('select-menu.php');
+?>
 	<html lang="en">
 	<head>
 		<!-- Required meta tags -->
@@ -67,14 +71,13 @@
 							<i class="fa fa-user-o" style="color:white" aria-hidden="true"  id='show_user_name'></i>							
 						</h2>
 						<h3 class="text-center" style="color:white">請輸入想新增的農業用水</h3>
-						<!-- <form  action="uploadpicture.php" method="post" enctype="multipart/form-data" target="upload">
-							<labe style ="color:white">選擇圖片:<input class="form-control" id="customFile" type="file" name="file"  required></labe>
-							<input type="submit" class="btn btn-outline-info mt-2"name="postcode-submit" value ="送出">
-						</form> -->
 						<form class="px-3"  action="insertwater.php" name="form1" method="post">
 						
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="area" placeholder="區域" required>
+							<!-- <input class="form-control form-control-lg " type="text" name="area" placeholder="區域" required> -->
+							<?php
+							select_menu($link,'agriculture_water','area','area')
+							?>
 						</div >
 						<div class="form-input mb-3">
 							<input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required>
