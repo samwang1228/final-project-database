@@ -36,7 +36,7 @@ function updatePageCode(page,clicked_menu){
 function updateSideCodeReservoir(htmlCode){
     // console.log(page_menu_list[page]);
     for (let i=0; i < page_menu_list[page_num].length; i++) {
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+')" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page_num][i]['area_name']+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setCircleFunction('+i+')" style="cursor:pointer" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page_num][i]['area_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=0; j<page_menu_list[page_num][i]['reservoir'].length;j++) {
             id = 'item'+i+'-'+j;
@@ -51,7 +51,7 @@ function updateSideCodeReservoir(htmlCode){
 
 function updateSideCodeRainfall(htmlCode){
     for (let i=0; i < page_menu_list[page_num].length; i++) {
-        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setRainfall_graph('+i+');" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page_num][i]['city_name']+'</div>';
+        htmlCode += '<div onclick="onSideMenuTitleClick('+i+'); setRainfall_graph('+i+');" style="cursor:pointer" class="uiTitle"><i class="fa fa-bars" aria-hidden="true"></i> '+page_menu_list[page_num][i]['city_name']+'</div>';
         htmlCode += '<ul id="menu-'+i+'" class="hide">';
         for (let j=0; j<page_menu_list[page_num][i]['rain_station'].length;j++) {
             id = 'item'+i+'-'+j;
