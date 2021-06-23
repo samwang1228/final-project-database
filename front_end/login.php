@@ -43,7 +43,7 @@
 											<label class="custom-control-label text-white" for="cb1">Remember me</label>
 										</div>										
 									</div>
-									<a class='text-white' style="margin :0 0 0 16vw" onclick="onRegisterButtonClick()">我要註冊</a>
+									<a class='text-white' style="margin :0 0 0 16vw;cursor:pointer;" onclick="onRegisterButtonClick()">我要註冊</a>
 								</div>
 
 								<div style="color:#cf0000" id="login_error_message">

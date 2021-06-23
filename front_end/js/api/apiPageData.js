@@ -1,41 +1,16 @@
 /* eslint-env jquery */
 function apiPageData(callback){
-    if(page_num === 0){ //水庫水情     
-        // $.post({
-        //     url:backend_address,
-        //     data:JSON.stringify({type:'get_reservoir_data'})
-        //     },function(jsonResult){
-        //         let result = JSON.parse(jsonResult);
-        //         if(result['sucess']==='true'){
-        //             console.log(result['data']);
-        //             page_menu_list[page_num] = result['data'];
-        //             callback(true);
-        //         }
-        //     }
-        // );
-        // page_menu_list[page_num] = [];
+    if(page_num === 0){ //水庫水情 
         for(let i=0;i<sql_area_list.length;i++){            
             page_menu_list[page_num].push({'area_name':sql_area_list[i],'reservoir':[]});
         }        
         callback(true);
 
     }else if(page_num===1){ //降雨分析
-        // $.post({
-        //     url:backend_address,
-        //     data:JSON.stringify({type:'get_rainfall_data',time:'weekly'})
-        //     },function(jsonResult){
-        //         let result = JSON.parse(jsonResult);
-        //         if(result['sucess']==='true'){
-        //             console.log(result['data']);
-        //             page_menu_list[page_num] = result['data'];
-        //         }
-        //     }
-        // );
         $.post({
             url:backend_address,
             data:JSON.stringify({type:'get_city'})
             },function(jsonResult){
-                // console.log('log',jsonResult);
                 let result = JSON.parse(jsonResult);
                 if(result['sucess']==='true'){
                     console.log(result['data']);
@@ -57,7 +32,6 @@ function apiGetReservoirByArea(click_item,callback){
             let result = JSON.parse(jsonResult);
             if(result['sucess']==='true'){                
                 page_menu_list[page_num][click_item] = result['data'][0];
-                // console.log('data',page_menu_list[page_num]);
                 onMenuDataLoad(true,click_item);
                 callback(true);
             }            
@@ -81,7 +55,6 @@ function apiGetRainfallByArea(click_item,callback){
                         break;
                     }
                 }
-                // console.log('data',result['data']);
                 onMenuDataLoad(true,click_item);
                 callback(true);
             }            
@@ -89,6 +62,7 @@ function apiGetRainfallByArea(click_item,callback){
     );
 
 }
+
 
 function onMenuDataLoad(status,page_area){
 	if(!status){
@@ -100,7 +74,7 @@ function onMenuDataLoad(status,page_area){
 }
 
 function apiLoadChunkData(clicked_menu,func){
-    console.log('ChunkLoad',clicked_menu);
+    console.log('Before_ChunkLoad',clicked_menu);
     switch(page_num){
         case 0: //reservoir
             apiGetReservoirByArea(clicked_menu,func);

@@ -4,7 +4,7 @@ initialize();
 // loding data
 apiPageData(initial_page_content);
 
-// rendering page
+// rendering page after loading title
 function initial_page_content(state){
 	if(!state){ //failed fatch data
 		console.log('Unable Fatch Data!');

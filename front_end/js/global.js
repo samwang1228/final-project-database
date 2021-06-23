@@ -17,7 +17,7 @@ let page = document.currentScript.getAttribute('page');
 var page_num = parseInt(page,10);
 // 0=水庫情形 1=降雨分析 2=停水預警 4=Account
 
-var page_menu_list = [];
+var page_menu_list = []; //save page data
 var area_list = ['N','S','E','W'];
 var sql_area_list=['北','中','南','東'];
 
