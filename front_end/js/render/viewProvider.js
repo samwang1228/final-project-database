@@ -184,13 +184,13 @@ function createCircle(clicked_menu){
 // }, 1000);
 
 function setCircleFunction(clicked_menu){
-    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 800,clicked_menu);
+    setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,clicked_menu);
 }
 function setRainfall_graph(clicked_menu){
-    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 800,clicked_menu);
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1500,clicked_menu);
 }
 
-function rainfall_graph(clicked_menu){
+function rainfall_graph(clicked_menu){         
     for(let x=0;x<page_menu_list[page][clicked_menu]['rain_station'].length;x++){ //each rain_station
         let day_label=[];
         let rainfall_label=[];
@@ -213,29 +213,30 @@ function rainfall_graph(clicked_menu){
                 data: rainfall_label,
                 fill: true,
                 borderColor: 'rgb(75, 192, 192)',
-            // backgroundColor:'white',
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                ticks: {
-                    color:'white',
-                }
+                // backgroundColor:'white',
+              }]
             },
-            x: {
-                ticks: {
-                    color:'white',
-                }
-            },
-          
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            color:'white',
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color:'white',
+                        }
+                    },
+                
 
-        }
-    }
-});
+                }
+            }
+        });
 
     }        
 }
+
 var randomScalingFactor = function() { 
 
     return Math.round(Math.random() * 100) 
@@ -246,5 +247,5 @@ var randomScalingFactor = function() {
 if(page==0){
     setTimeout(function(clicked_menu){ createCircle(clicked_menu); }, 1000,0);
 }else if(page==1){
-    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1000,0);
+    setTimeout(function(clicked_menu){ rainfall_graph(clicked_menu); }, 1500,0);
 }
