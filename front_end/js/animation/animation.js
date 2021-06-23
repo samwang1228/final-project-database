@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
 
   ;
-  console.log(loading);
+  // console.log(loading);
 });
 
 function switchAnimation(){
@@ -25,6 +25,6 @@ function switchAnimation(){
   autoAlpha:1,
   y:0
 });
- console.log(ani);
+//  console.log(ani);
 }
 

@@ -22,9 +22,21 @@ switch($type){
     case 'get_reservoir_data':
         apiGetReservoirData();
         break;
+    case 'get_reservoir_data_area':
+        $area = $data['area'];
+        apiGetReservoirDataByArea($area);
+        break;
+    case 'get_city':
+        apiGetCity();
+        break;
     case 'get_rainfall_data':
         $time = $data['time'];  //daily weekly monthly
         apiGetRainfallData($time);
+        break;
+    case 'get_rainfall_data_area':
+        $time = $data['time'];  //daily weekly monthly
+        $city = $data['city'];
+        apiGetRainfallDataByArea($time,$city);
         break;
     case 'register':
         $postUSER = $data['ID'];

@@ -19,6 +19,7 @@ var page_num = parseInt(page,10);
 
 var page_menu_list = [];
 var area_list = ['N','S','E','W'];
+var sql_area_list=['北','中','南','東'];
 
 function initialize(){
     for(let i=0;i<page_amount;i++){

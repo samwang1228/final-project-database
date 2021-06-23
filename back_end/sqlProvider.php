@@ -27,6 +27,7 @@
     }
 
     function setMySQL(){        
+        // 'ec2-3-92-133-135.compute-1.amazonaws.com'
         $mysqli = new mysqli('ec2-3-92-133-135.compute-1.amazonaws.com', 'databaseaws', 'databaseaws', 'reservoir_project');
         mysqli_query($mysqli,("SET NAMES UTF8"));
         //Output any connection error

@@ -8,9 +8,8 @@ apiPageData(initial_page_content);
 function initial_page_content(state){
 	if(!state){ //failed fatch data
 		console.log('Unable Fatch Data!');
-	}
-	
-	//success fatch data
-	updateSideCode(page_num);
-	updatePageCode(page_num,0);
+		return;
+	}	
+	// console.log(page_num,page_menu_list[page_num]);
+	apiLoadChunkData(0,function(status){});
 }
