@@ -1,17 +1,19 @@
 /* eslint-env jquery */
-function onSideMenuTitleClick(clicked_menu){	
-	apiLoadChunkData(clicked_menu,(status)=>{
-		let menu=document.getElementById("menu-"+clicked_menu);
-		menu.classList.toggle("hide");
-		console.log(menu.classList);
-	});
-	
+function onSideMenuTitleClick(clicked_menu){
+	if($('#menu-'+clicked_menu).html()===''){ //object unload
+		apiLoadChunkData(clicked_menu,(status)=>{
+			let menu=document.getElementById("menu-"+clicked_menu);
+			console.log(menu);
+			menu.classList.toggle("hide");		
+		});
+	}
+	let menu=document.getElementById("menu-"+clicked_menu);
+	menu.classList.toggle("hide");	
 	//也就是有hide時關掉hide沒有則呼叫
 	/*if(menu.style.display=="none")
 		menu.style.display="block";//秀出來
 	else 
-		menu.style.display="none";*/
-	
+		menu.style.display="none";*/	
 }
 
 function onSideMenuItemClick(i,j){	

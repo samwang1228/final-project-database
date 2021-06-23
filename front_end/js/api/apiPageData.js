@@ -100,6 +100,7 @@ function onMenuDataLoad(status,page_area){
 }
 
 function apiLoadChunkData(clicked_menu,func){
+    console.log('ChunkLoad',clicked_menu);
     switch(page_num){
         case 0: //reservoir
             apiGetReservoirByArea(clicked_menu,func);

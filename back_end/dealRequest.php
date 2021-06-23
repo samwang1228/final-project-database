@@ -152,7 +152,7 @@
             array_push($GLOBALS['RESPOND']['data'],['city_name'=>$city_list[$i],'rain_station'=>[]]);
             
             // get all rain_station in this city
-            $query_rainstation = "SELECT name FROM rain_station WHERE city='".$city_list[$i]."'";
+            $query_rainstation = "SELECT name,rain_station.number FROM rain_station WHERE city='".$city_list[$i]."'";
             [$result_rainstation,$num_row_rainstation] = sendServerRequest($query_rainstation);
             for($x = 0; $x < $num_row_rainstation; $x++) {
                 $row_rain_station = mysqli_fetch_array($result_rainstation);
@@ -167,7 +167,7 @@
                                    FROM rainfall,rain_station 
                                    WHERE rain_station.number=rainfall.number 
                                    AND city='".$city_list[$i]."' 
-                                   AND name='".$row_rain_station['name']."' 
+                                   AND rainfall.number='".$row_rain_station['number']."' 
                                    AND date>='".$date_str."'
                 "; 
                 // AND date>='2021-06-10 00:00:00'
