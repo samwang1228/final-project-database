@@ -68,7 +68,7 @@ include_once('./php/database_record.php');
 								<form action="updatepostcode.php" method="post">
 									<select name="isearch" >
 										<?php
-										$sql="SELECT distinct(city) FROM city_area ";
+										$sql="SELECT distinct(city_area.city) FROM city_area,postcode_area WHERE city_area.city=postcode_area.city";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
