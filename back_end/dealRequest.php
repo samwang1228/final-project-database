@@ -69,7 +69,7 @@
     function apiGetCity(){
         $GLOBALS['RESPOND']['data'] = array();
         $city_list = [];
-        $query_city = "SELECT city FROM city_area";
+        $query_city = "SELECT DISTINCT(city_area.city) FROM city_area,postcode_area WHERE city_area.city=postcode_area.city";
         [$result_city,$num_row_city] = sendServerRequest($query_city);
         for($x = 0; $x < $num_row_city; $x++) {
             $row = mysqli_fetch_array($result_city);
@@ -92,7 +92,7 @@
 
         //get all city in taiwan
         $city_list = [];
-        $query_city = "SELECT city FROM city_area";
+        $query_city = "SELECT DISTINCT(city_area.city) FROM city_area,postcode_area WHERE city_area.city=postcode_area.city";
         [$result_city,$num_row_city] = sendServerRequest($query_city);
         for($x = 0; $x < $num_row_city; $x++) {
             $row = mysqli_fetch_array($result_city);
