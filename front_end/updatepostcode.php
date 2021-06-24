@@ -190,13 +190,13 @@ include_once('./php/database_record.php');
 													<input type="text"size='13px' name="area_name[]" value="<?php echo $row['area']; ?>" readonly='readonly'>
 												</td>
 												<td>
-													<input type="text" size='13px' name="city_name[]" value="<?php echo $row['city']; ?>">
+													<input type="text" size='13px' name="city_name[]" value="<?php echo $row['city']; ?>" readonly='readonly'>
 												</td>
 												<td>
 													<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>">
 												</td>
 												<td>
-													<input type="text"  size='13px' name="district_name[]" value="<?php echo $row['district']; ?>">
+													<input type="text"  size='13px' name="district_name[]" value="<?php echo $row['district']; ?>" readonly='readonly'>
 												</td>
 												<td>
 													<input type="text"size='13px'  name="district[]" value="<?php echo $row['district']; ?>">
