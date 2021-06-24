@@ -86,7 +86,7 @@
 									</select>
 									<select name="isearch_name" >
 										<?php
-										$sql="SELECT date FROM rainfall WHERE date>='2021-06-18 00:00:00' ORDER BY date DESC";
+										$sql="SELECT distinct(date) FROM rainfall WHERE date>='2021-06-18 00:00:00' ORDER BY date DESC";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
