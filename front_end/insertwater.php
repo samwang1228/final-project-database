@@ -19,8 +19,8 @@ include_once('./php/database_record.php');
 			$sql_argi="INSERT INTO agriculture_water( area, year,irrigation,aquaculture,livestock) VALUES ('$area','$year','$irrigation','$aquaculture','$livestock')";
 			$insert_argi=mysqli_query($link,$sql_argi);
 			if($insert_argi){
-				change_record($link,6,1);
-				die("<script> alert(\"農業用水已新增成功\"); location.href=\"insertwater.html\"; </script>"); 
+				change_record($link,6,1,'Insert');
+				die("<script> alert(\"農業用水已新增成功\"); location.href=\"insertwaterframe.php\"; </script>"); 
 			}else 
 				echo "農業用水新增失敗"; 
 				echo $sql_argi;
@@ -39,8 +39,8 @@ include_once('./php/database_record.php');
 			$sql_live="INSERT INTO living_water( city, year,tapwater_population,tapwater_used,selftake_population,selftake_used) VALUES ('$city','$year','$tapwater_population','$tapwater_used','$selftake_population','$selftake_used')";
 			$insert_live=mysqli_query($link,$sql_live);
 			if($insert_live){
-				change_record($link,7,1);
-				die("<script> alert(\"生活用水已新增成功\"); location.href=\"insertwater.html\"; </script>"); 
+				change_record($link,7,1,'Insert');
+				die("<script> alert(\"生活用水已新增成功\"); location.href=\"insertwaterframe.php\"; </script>"); 
 			}else 
 				echo "生活用水新增失敗"; 
 				echo $sql_live;
@@ -54,8 +54,8 @@ include_once('./php/database_record.php');
 			$sql_indu="INSERT INTO industrial_water( city, year,industrial_project,industrial_project_area,industrial_project_used) VALUES ('$city','$year','$industrial_project','$industrial_project_area','$industrial_project_used')";
 			$insert_indu=mysqli_query($link,$sql_indu);
 			if($insert_indu){
-				change_record($link,8,1);
-				die("<script> alert(\"工業用水已新增成功\"); location.href=\"insertwater.html\"; </script>"); 
+				change_record($link,8,1,'Insert');
+				die("<script> alert(\"工業用水已新增成功\"); location.href=\"insertwaterframe.php\"; </script>"); 
 		   	}else 
 				echo "工業用水新增失敗"; 
 				echo $sql_indu;

@@ -24,13 +24,13 @@ include_once('./php/database_record.php');
 		echo '縣市插入失敗可能已存在或格式不符合';
 	}
 		// city_area change finish
-	change_record($link,3,1);
+	change_record($link,3,1,"Insert");
 
 		//插入時可能縣市已經存在，只是加入新的區域
 	$sql_postcode="INSERT INTO postcode_area( city, district) VALUES ('$city','$district')";
 	$insert_postcode=mysqli_query($link,$sql_postcode);
 	if($insert_postcode){			
-		change_record($link,2,1);
+		change_record($link,2,1,'Insert');
 		die("<script> alert(\"已新增成功\"); location.href=\"insertpostcode.html\"; </script>"); 
 	}
 	else 

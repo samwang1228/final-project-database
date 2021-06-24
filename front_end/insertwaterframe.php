@@ -1,7 +1,7 @@
 <!doctype html>
 <?php session_start();
 include_once('connect.php');
-include_once('select-menu.php');
+// include_once('select-menu.php');
 ?>
 	<html lang="en">
 	<head>
@@ -31,19 +31,16 @@ include_once('select-menu.php');
 				</button>
 				<div class="collapse navbar-collapse baccolor4 " id="navbarNav">
 					<ul class="navbar-nav  mx-auto">  <!--置中-->
-						<li class="nav-item ">
+						<li class="nav-item text-center">
 							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
 						</li>
-						<li class="nav-item " >
-							<a class="nav-link  navbar-fixed  text-center" href="insertreservoir.html" style="color: white">水庫資料</a>
-						</li>
-						<li class="nav-item">
+						<li class="nav-item text-center">
 							<a class="nav-link  navbar-fixed text-center" href="insertpostcode.html" style="color: white">地區資料</a>
 						</li>
-						<li class="nav-item manager-color">
-							<a class="nav-link  navbar-fixed " href="insertwater.html" style="color: white">用水資料</a>
+						<li class="nav-item manager-color text-center">
+							<a class="nav-link  navbar-fixed " href="insertwaterframe.php" style="color: white">用水資料</a>
 						</li>
-					<ul class="navbar-nav nav2">  <!--nav2為第二個class-->
+					<ul class="navbar-nav nav2 text-center">  <!--nav2為第二個class-->
 						<li class="nav-item">
 							<a class="nav-link navbar-fixed text-center" href="updatewater.php" style="color: white">update</a>
 						</li>
@@ -75,12 +72,39 @@ include_once('select-menu.php');
 						
 						<div class="form-input mb-3">
 							<!-- <input class="form-control form-control-lg " type="text" name="area" placeholder="區域" required> -->
+							<select name="area">
 							<?php
-							select_menu($link,'agriculture_water','area','area')
+										$sql="SELECT distinct(area) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['area']; ?>"><?php echo $row['area'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
 							?>
+						</select>
 						</div >
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required>
+							<!-- <input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required> -->
+							<select name="year">
+							<?php
+										$sql="SELECT year FROM agriculture_water ORDER BY year DESC";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
+						</select>
 						</div>
 						<div class="form-input mb-3">
 							<input class="form-control form-control-lg " type="text" name="irrigation"placeholder="灌溉用水" required>
@@ -119,10 +143,39 @@ include_once('select-menu.php');
 						<form class="px-3"  action="insertwater.php" name="form2" method="post">
 						
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required>
+							<!-- <input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required> -->
+							<select name="city">
+							<?php
+										$sql="SELECT distinct(city) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['city']; ?>"><?php echo $row['city'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
+						</select>
 						</div >
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required>
+							<!-- <input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required> -->
+							<select name='year'>
+							<?php
+										$sql="SELECT distinct(year) FROM living_water ORDER BY `living_water`.`year` DESC ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
 						</div>
 						<div class="form-input mb-3">
 							<input class="form-control form-control-lg " type="text" name="tapwater_population"placeholder="自來水供應量 供水人口" required>
@@ -163,14 +216,62 @@ include_once('select-menu.php');
 						<form class="px-3"  action="insertwater.php" name="form2" method="post">
 						
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required>
-						</div >
-						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required>
+						<!-- 	<input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required> -->
+						<select name='city'>
+							<?php
+										$sql="SELECT distinct(city) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['city']; ?>"><?php echo $row['city'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
+						</select>
 						</div>
+						<!-- </div > -->
 						<div class="form-input mb-3">
-							<input class="form-control form-control-lg " type="text" name="industrial_project"placeholder="工業項目" required>
-						</div>	
+							<!-- <input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required> -->
+							<select name='year'>
+							<?php
+										$sql="SELECT distinct(year) FROM industrial_water ORDER BY year DESC";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['year']; ?>"><?php echo $row['year'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
+						</select>
+						</div>
+						<!-- </div> -->
+						<div class="form-input mb-3">
+							<!-- <input class="form-control form-control-lg " type="text" name="industrial_project"placeholder="工業項目" required> -->
+							<select name='industrial_project'>
+							<?php
+										$sql="SELECT distinct(industrial_project) FROM industrial_water ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['industrial_project']; ?>"><?php echo $row['industrial_project'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+							?>
+						</select>
+						</div>
+						<!-- </div>	 -->
 						<div class="form-input mb-3">
 							<input class="form-control form-control-lg " type="text" name="industrial_project_area"placeholder="工業項目面積" required>
 						</div>

@@ -68,7 +68,7 @@ include_once('./php/database_record.php');
 								<form action="updatewater.php" method="post">
 								<select name="indusearch" >
 										<?php
-										$sql="SELECT distinct(city) FROM city_area ";
+										$sql="SELECT distinct(city) FROM city_area NATURAL JOIN industrial_water ";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -86,7 +86,7 @@ include_once('./php/database_record.php');
 									</select>
 									<select name="indusearch_year" >
 										<?php
-										$sql="SELECT distinct(year) FROM industrial_water ";
+										$sql="SELECT distinct(year) FROM industrial_water ORDER BY year DESC";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -115,7 +115,7 @@ include_once('./php/database_record.php');
 								<form action="updatewater.php" method="post">
 								<select name="argsearch" >
 										<?php
-										$sql="SELECT distinct(area) FROM city_area ";
+										$sql="SELECT distinct(area) FROM city_area NATURAL JOIN agriculture_water";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -133,7 +133,7 @@ include_once('./php/database_record.php');
 									</select>
 									<select name="argsearch_year" >
 										<?php
-										$sql="SELECT distinct(year) FROM agriculture_water ";
+										$sql="SELECT distinct(year) FROM agriculture_water ORDER BY year DESC";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -158,7 +158,7 @@ include_once('./php/database_record.php');
 								<form action="updatewater.php" method="post">
 								<select name="livesearch" >
 										<?php
-										$sql="SELECT distinct(city) FROM city_area ";
+										$sql="SELECT distinct(city) FROM city_area NATURAL JOIN living_water";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -176,7 +176,7 @@ include_once('./php/database_record.php');
 									</select>
 									<select name="livesearch_year" >
 										<?php
-										$sql="SELECT distinct(year) FROM living_water ";
+										$sql="SELECT distinct(year) FROM living_water ORDER BY year DESC";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);

@@ -21,12 +21,12 @@ include_once('./php/database_record.php');
 		$insert_rain_station=mysqli_query($link,$sql_rain_station);
 		if ($insert_rain_station){
 			// rain_station change finish
-			change_record($link,5,1);
+			change_record($link,5,1,'Insert');
 
 			$sql_rainfall="INSERT INTO rainfall( number, date,today_rainfall) VALUES ('$number','$date','$today_rainfall')";
 			$insert_rainfall=mysqli_query($link,$sql_rainfall);
 			if($insert_rainfall){
-				change_record($link,4,1);
+				change_record($link,4,1,'Insert');
 				die("<script> alert(\"已新增成功\"); location.href=\"insertpostcode.html\"; </script>"); 
 			}
 			else 
