@@ -35,7 +35,7 @@ include_once('connect.php');
 							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
 						</li>
 						<li class="nav-item text-center">
-							<a class="nav-link  navbar-fixed text-center" href="insertpostcode.html" style="color: white">地區資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="insertpostcodeframe.php" style="color: white">地區資料</a>
 						</li>
 						<li class="nav-item manager-color text-center">
 							<a class="nav-link  navbar-fixed " href="insertwaterframe.php" style="color: white">用水資料</a>
@@ -92,7 +92,7 @@ include_once('connect.php');
 							<!-- <input class="form-control form-control-lg " type="text" name="year" placeholder="年份" required> -->
 							<select name="year">
 							<?php
-										$sql="SELECT year FROM agriculture_water ORDER BY year DESC";
+										$sql="SELECT distinct(year) FROM agriculture_water ORDER BY year DESC";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
@@ -135,10 +135,10 @@ include_once('connect.php');
 				<div class="col-lg-6 col-md-6 manager-block">		<!--登入 -->		
 					
 					<div class="col-lg-9 col-md-12 col-sm-9 col-xs-12 manager-form">
-						<h2 class="text-center mb-3 mt-5" style="color:white"> 
+						<!-- <h2 class="text-center mb-3 mt-5" style="color:white"> 
 							<i class="fa fa-user-o" style="color:white" aria-hidden="true"></i>
 							XXX您好!							
-						</h2>
+						</h2> -->
 						<h3 class="text-center" style="color:white">請輸入想新增的民生用水</h3>
 						<form class="px-3"  action="insertwater.php" name="form2" method="post">
 						
@@ -208,10 +208,10 @@ include_once('connect.php');
 				<div class="col-lg-6 col-md-6 manager-block">		<!--登入 -->		
 					
 					<div class="col-lg-9 col-md-12 col-sm-9 col-xs-12 manager-form">
-						<h2 class="text-center mb-3 mt-5" style="color:white"> 
+					<!-- 	<h2 class="text-center mb-3 mt-5" style="color:white"> 
 							<i class="fa fa-user-o" style="color:white" aria-hidden="true"></i>
 							XXX您好!							
-						</h2>
+						</h2> -->
 						<h3 class="text-center" style="color:white">請輸入想新增的工業用水</h3>
 						<form class="px-3"  action="insertwater.php" name="form2" method="post">
 						

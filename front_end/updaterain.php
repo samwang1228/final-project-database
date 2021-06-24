@@ -50,7 +50,7 @@
 						</li>
 						<!-- <ul class="navbar-nav nav2">  --> <!--nav2為第二個class-->
 							<li class="nav-item">
-								<a class="nav-link navbar-fixed text-center" href="insertpostcode.html" style="color: white">insert</a>
+								<a class="nav-link navbar-fixed text-center" href="insertpostcodeframe.php" style="color: white">insert</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link navbar-fixed" href="./login.php" style="color: white">Log Out</a>
@@ -68,7 +68,7 @@
 								<form action="updaterain.php" method="post">
 									<select name="isearch" >
 										<?php
-										$sql="SELECT distinct(city) FROM city_area ";
+										$sql="SELECT distinct(city) FROM city_area NATURAL JOIN postcode_area";
 										// $list =mysql_query($str,$link);
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);

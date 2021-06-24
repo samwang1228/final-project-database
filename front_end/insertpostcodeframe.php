@@ -1,5 +1,4 @@
-<?
-	php session_start(); 
+<?php session_start(); 
 	require_once 'connect.php';
 	include_once('./php/database_record.php');
 ?>
@@ -36,7 +35,7 @@
 							<a class="nav-link  navbar-fixed  " href="水庫水情.html" style="color: white">user</a>
 						</li>
 						<li class="nav-item manager-color text-center">
-							<a class="nav-link  navbar-fixed text-center" href="insertpostcode.html" style="color: white">地區資料</a>
+							<a class="nav-link  navbar-fixed text-center" href="insertpostcodeframe.php" style="color: white">地區資料</a>
 						</li>
 						<li class="nav-item text-center">
 							<a class="nav-link  navbar-fixed " href="insertwaterframe.php" style="color: white">用水資料</a>
@@ -70,23 +69,25 @@
 							<i class="fa fa-user-o" style="color:white" aria-hidden="true"  id='show_user_name'></i>							
 						</h2>
 						<h3 class="text-center" style="color:white">請輸入想新增的地區</h3>
-						<!-- <form  action="uploadpicture.php" method="post" enctype="multipart/form-data" target="upload">
-							<labe style ="color:white">選擇圖片:<input class="form-control" id="customFile" type="file" name="file"  required></labe>
-							<input type="submit" class="btn btn-outline-info mt-2"name="postcode-submit" value ="送出">
-						</form> -->
 						<form class="px-3"  action="insertpostcode.php" name="form1" method="post">
 							<div class="form-input mb-3">
-								<<!-- input class="form-control form-control-lg " type="text" name="area"placeholder="區域" required> -->
-								<select name="area" >
-									<option >北</option>
-									<option >中</option>
-									<option >南</option>
-									<option >東</option>
-									<option >外島</option>
-								</select>
-							</div>
-							<div class="form-input mb-3">
-								<input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required>
+								<!-- <input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required> -->
+								<select name="city" >
+										<?php
+										$sql="SELECT distinct(city) FROM city_area ";
+										// $list =mysql_query($str,$link);
+										$ro=mysqli_query($link,$sql);
+										$row=mysqli_fetch_assoc($ro);
+										$total=mysqli_num_rows($ro);
+										do
+										{
+										?>
+										      <option value="<?php echo $row['city']; ?>"><?php echo $row['city'];?></option>
+										<?php
+										}while($row=mysqli_fetch_assoc($ro));
+										?>
+									
+									</select>
 							</div >
 							<div class="form-input mb-3">
 								<input class="form-control form-control-lg " type="text" name="district" placeholder="鄉鎮名" required>

@@ -40,7 +40,7 @@ function onFormLoginButtomClick(){
 			myDate.setMonth(myDate.getMonth() + 12);
 			document.cookie = 'user' +"=" + form_username + ";expires=" + myDate 
                   + ";domain="+LOGIN_COOKIE_ADDRESS+";path=/";
-			document.location.href="insertpostcode.html";
+			document.location.href="insertpostcodeframe.php";
 		}
 	);
 }
