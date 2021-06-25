@@ -21,6 +21,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./js/global.js"></script>
 		<link href="css/manager.css?=time()" rel="stylesheet" type="text/css">
+		<script src="js/controller/clickHandler.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
@@ -73,8 +74,9 @@
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+											?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['isearch_name']))echo $_POST['isearch']; else echo '請選擇縣市'?></option>
+										<?php
 										do
 										{
 										?>
@@ -91,6 +93,9 @@
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
+											?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['isearch_name']))echo $_POST['isearch_name']; else echo '請選擇時間'?></option>
+										<?php
 										do
 										{
 										?>
@@ -171,7 +176,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-6">
-								<form action="updaterain.php" method="post" name="mylist">
+								<form action="updaterain.php" method="post" name="mylist" onsubmit= 'return checkSubmit()'>
 									<table cellspacing=1px>
 										<tr>
 											<td>測站ID</td>
@@ -206,10 +211,10 @@
 													<input type="text" name="today_rainfall[]"size='13px' value="<?php echo $row['today_rainfall']; ?>">
 												</td>
 												<td>
-													<button class="btn btn-danger" style="width:70px" type="submit" name="<?php echo 'd'.$temp ?>"value="<?php echo $num; ?>">刪除</button>
+													<button class="btn btn-danger" style="width:70px" type="submit" name="<?php echo 'd'.$temp ?>"value="<?php echo $num; ?>" onclick='onDeleteButton()'>刪除</button>
 												</td>
 												<td >
-												<button type="submit" name="<?php echo'u' .$temp ?>" style="width:70px" class="btn btn-primary ">修改</button><br />
+												<button type="submit" name="<?php echo'u' .$temp ?>" style="width:70px" class="btn btn-primary " onclick='onUpdateButton()'>修改</button><br />
 											</td>
 											</tr>
 											<?php

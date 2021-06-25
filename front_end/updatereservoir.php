@@ -18,7 +18,7 @@ include_once('./php/database_record.php');
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script> 
 		<title>我不知道</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="./js/global.js"></script>
+		<script src="js/controller/clickHandler.js"></script>
 		<link href="css/manager.css?=time()" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -63,7 +63,7 @@ include_once('./php/database_record.php');
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="upper text-center">
+							<div class="upper text-center res">
 								<form action="updatereservoir.php" method="post">
 									<select name="isearch" >
 										<?php
@@ -72,8 +72,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+										?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['isearch']))echo $_POST['isearch']; else echo '請選擇水庫名字'?></option>
+										<?php
 										do
 										{
 										?>
@@ -162,7 +163,7 @@ include_once('./php/database_record.php');
 						<div class="row">
 							<!-- <div class="col-lg-1"></div> -->
 							<div class="col-lg-6">
-								<form action="updatereservoir.php" method="post" name="mylist">
+								<form action="updatereservoir.php" method="post" name="mylist" onsubmit='return checkSubmit(this)'>
 									<table cellspacing=1px>
 										<tr>
 											<td>水庫ID:</td>
@@ -202,10 +203,10 @@ include_once('./php/database_record.php');
 													<input type="text"size='13px' name="reservoir_rainfall[]" value="<?php echo $row['reservoir_rainfall']; ?>">
 												</td>
 												<td>
-													<button class="btn btn-danger" style="width:70px" type="submit" name="<?php echo 'd'.$temp ?>"value="<?php echo $num; ?>">刪除</button>
+													<button class="btn btn-danger" style="width:70px" type="submit" name="<?php echo 'd'.$temp ?>"value="<?php echo $num; ?>" onclick='onDeleteButton()'>刪除</button>
 												</td>
 												<td >
-												<button type="submit" name="<?php echo $temp?>" style="width:70px" class="btn btn-primary ">修改</button><br />
+												<button type="submit" name="<?php echo $temp?>" style="width:70px" class="btn btn-primary " onclick='onUpdateButton()'>修改</button><br />
 											</td>
 											</tr>
 											<?php

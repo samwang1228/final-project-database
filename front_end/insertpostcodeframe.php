@@ -19,6 +19,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./js/global.js"></script>
 		<link href="css/manager.css?=time()" rel="stylesheet" type="text/css">
+		<script src="js/controller/clickHandler.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
@@ -69,7 +70,7 @@
 							<i class="fa fa-user-o" style="color:white" aria-hidden="true"  id='show_user_name'></i>							
 						</h2>
 						<h3 class="text-center" style="color:white">請輸入想新增的地區</h3>
-						<form class="px-3"  action="insertpostcode.php" name="form1" method="post">
+						<form class="px-3"  action="insertpostcode.php" name="form1" method="post" onsubmit='return checkSubmit(this)'>
 							<div class="form-input mb-3">
 								<!-- <input class="form-control form-control-lg " type="text" name="city" placeholder="縣市名" required> -->
 								<select name="city" >
@@ -95,7 +96,7 @@
 
 						</div>
 						<span>
-							<input type="submit" class="btn btn-outline-info fixed-button" name="data-submit" value="確認">
+							<input type="submit" class="btn btn-outline-info fixed-button" name="data-submit" value="確認" onclick='onInsertButton()'>
 						</form>
 						<button type="button" class="btn btn-outline-info fixed-button">取消</button>
 					</span>

@@ -71,3 +71,22 @@ function onRegisterButtonClick(){
 	);	
 	
 }
+var msg='';
+function onDeleteButton(){
+	msg='您確定要刪除?';
+}
+function onUpdateButton(){
+	msg='您確定要修改?';
+}
+function onInsertButton()
+{
+	msg='您確定要新增?';
+}
+function checkSubmit(){			
+	if(confirm(msg)){
+			return true;
+		}
+		else{
+			return false;
+}   
+}

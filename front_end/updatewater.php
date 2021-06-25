@@ -20,6 +20,7 @@ include_once('./php/database_record.php');
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./js/global.js"></script>
 		<link href="css/manager.css?=time()" rel="stylesheet" type="text/css">
+		<script src="js/controller/clickHandler.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
@@ -73,8 +74,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+									  ?>
+										<option value="<?php if(isset($_POST['indusearch_year'])) echo $_POST['indusearch']; else echo ''?>" selected disabled hidden><?php if(isset($_POST['indusearch_year']))echo $_POST['indusearch']; else echo '請選擇縣市'?></option>
+										<?php
 										do
 										{
 											?>
@@ -91,8 +93,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+										?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['indusearch_year']))echo $_POST['indusearch_year']; else echo '請選擇縣市'?></option>
+										<?php
 										do
 										{
 											?>
@@ -120,8 +123,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+										?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['argsearch']))echo $_POST['argsearch']; else echo '請選擇地區'?></option>
+										<?php
 										do
 										{
 											?>
@@ -138,8 +142,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+									?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['argsearch_year']))echo $_POST['argsearch_year']; else echo '請選擇年份'?></option>
+										<?php
 										do
 										{
 											?>
@@ -163,8 +168,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+											?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['livesearch_year']))echo $_POST['livesearch']; else echo '請選擇縣市'?></option>
+										<?php
 										do
 										{
 											?>
@@ -181,8 +187,9 @@ include_once('./php/database_record.php');
 										$ro=mysqli_query($link,$sql);
 										$row=mysqli_fetch_assoc($ro);
 										$total=mysqli_num_rows($ro);
-										// $result = mysqli_query($link, $sql) or die("資料選取錯誤！".mysqli_error($link));
-										// while($data=mysqli_fetch_assoc($result)){
+											?>
+										<option value='' selected disabled hidden><?php if(isset($_POST['livesearch_year']))echo $_POST['livesearch_year']; else echo '請選擇年份'?></option>
+										<?php
 										do
 										{
 											?>
@@ -358,7 +365,7 @@ include_once('./php/database_record.php');
 						<div class="row">
 						<div class="col-lg-2"></div>
 						<div class="col-lg-6">
-						<form action="updatewater.php" method="post" name="mylist">
+						<form action="updatewater.php" method="post" name="mylist" onsubmit='return checkSubmit(this)'>
 						<table cellspacing=1px>
 						<tr>
 						<td>縣市</td>
@@ -388,10 +395,10 @@ include_once('./php/database_record.php');
 							<input type="text"size='13px' name="industrial_project_used[]" value="<?php echo $row['industrial_project_used']; ?>">
 							</td> 
 							<td>
-								<button class="btn btn-danger" style="width:70px" type="submit" name="indu_delete_button[]" value="<?php echo $num; ?>">刪除</button>
+								<button class="btn btn-danger" style="width:70px" type="submit" name="indu_delete_button[]" value="<?php echo $num; ?>" onclick='onDeleteButton()'>刪除</button>
 							</td>
 							<td>
-								<button class="btn btn-primary" style="width:70px" type="submit" name="indu_update_button[]" value="<?php echo $num; ?>">修改</button>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="indu_update_button[]" value="<?php echo $num; ?>" onclick='onUpdateButton()'>修改</button>
 							</td>
 							</tr>
 							<?php
@@ -423,7 +430,7 @@ include_once('./php/database_record.php');
 						<div class="row">
 						<div class="col-lg-2"></div>
 						<div class="col-lg-6">
-						<form action="updatewater.php" method="post" name="mylist">
+						<form action="updatewater.php" method="post" name="mylist" onsubmit="return checkSubmit(this)">
 						<table cellspacing=1px>
 						<tr>
 						<td>縣市</td>
@@ -453,10 +460,10 @@ include_once('./php/database_record.php');
 							<input type="text"size='13px' name="livestock[]" value="<?php echo $row['livestock']; ?>">
 							</td> 
 							<td>
-								<button class="btn btn-danger" style="width:70px" type="submit" name="argi_delete_button[]" value="<?php echo $num; ?>">刪除</button>
+								<button class="btn btn-danger" style="width:70px" type="submit" name="argi_delete_button[]" value="<?php echo $num; ?>" onclick='onDeleteButton()'>刪除</button>
 							</td>
 							<td>
-								<button class="btn btn-primary" style="width:70px" type="submit" name="argi_update_button[]" value="<?php echo $num; ?>">修改</button>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="argi_update_button[]" value="<?php echo $num; ?>" onclick='onUpdateButton()'>修改</button>
 							</td>
 							</tr>
 							<?php
@@ -488,7 +495,7 @@ include_once('./php/database_record.php');
 						<div class="row">
 						<!-- <div class="col-lg-1"></div> -->
 						<div class="col-lg-6">
-						<form action="updatewater.php" method="post" name="mylist">
+						<form action="updatewater.php" method="post" name="mylist" onsubmit="return checkSubmit(this)">
 						<table cellspacing=1px>
 						<tr>
 						<td>縣市:</td>
@@ -522,10 +529,10 @@ include_once('./php/database_record.php');
 							<input type="text"size='16px' name="selftake_used[]" value="<?php echo $row['selftake_used']; ?>">
 							</td>  
 							<td>
-								<button class="btn btn-danger" style="width:70px" type="submit" name="live_delete_button[]" value="<?php echo $num; ?>">刪除</button>
+								<button class="btn btn-danger" style="width:70px" type="submit" name="live_delete_button[]" value="<?php echo $num; ?>" onclick='onDeleteButton()'>刪除</button>
 							</td>
 							<td>
-								<button class="btn btn-primary" style="width:70px" type="submit" name="live_update_button[]" value="<?php echo $num; ?>">修改</button>
+								<button class="btn btn-primary" style="width:70px" type="submit" name="live_update_button[]" value="<?php echo $num; ?>" onclick='onUpdateButton()'>修改</button>
 							</td>
 							</tr>
 							<?php
