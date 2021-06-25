@@ -177,7 +177,7 @@ include_once('./php/database_record.php');
 						<div class="row">
 							<div class='col-lg-1'></div>
 							<div class="col-lg-6">
-								<form action="updatepostcode.php" method="post" name="mylist" onsubmit="return go(this)">
+								<form action="updatepostcode.php" method="post" name="mylist" onsubmit="return checkSubmit(this)">
 									<table cellspacing=1px>
 										<tr>
 											<td>地區</td>
@@ -196,10 +196,10 @@ include_once('./php/database_record.php');
 													<input type="text"size='13px' name="area_name[]" value="<?php echo $row['area']; ?>" readonly='readonly'>
 												</td>
 												<td>
-													<input type="text" size='13px' name="city_name[]" value="<?php echo $row['city']; ?>" readonly='readonly'>
+													<input type="text" size='13px' name="city_name[]" value="<?php echo $row['city']; ?>"readonly='readonly'>
 												</td>
 												<td>
-													<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>">
+													<input type="text" size='13px' name="city[]" value="<?php echo $row['city']; ?>" >
 												</td>
 												<td>
 													<input type="text"  size='13px' name="district_name[]" value="<?php echo $row['district']; ?>" readonly='readonly'>
