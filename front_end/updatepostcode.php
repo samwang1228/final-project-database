@@ -21,23 +21,8 @@ include_once('./php/database_record.php');
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./js/global.js"></script>
 		<link href="css/manager.css?=time()" rel="stylesheet" type="text/css">
-		<script>
-			var msg='';
-			function onDeleteButton(){
-				msg='您確定要刪除?';
-			}
-			function onUpdateButton(){
-				msg='您確定要修改?';
-			}
-			function go(){			
-				if(confirm(msg)){
-						return true;
-					}
-					else{
-						return false;
-	       }   
-     }
-</script>
+		
+	<script src="js/controller/clickHandler.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top "> <!-- bg-light修改模式 fixed-top-->
